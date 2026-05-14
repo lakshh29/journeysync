@@ -23,7 +23,7 @@ Node.js
 Express.js
 
 Database:
-MongoDB / SQL (update according to your database)
+MongoDB 
 
 Tools & Technologies:
 Git & GitHub
