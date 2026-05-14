@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        .radio-group { display: flex; gap: 15px; }
+        .btn { background: #28a745; color: white; padding: 10px 15px; border: none; cursor: pointer; width: 100%; }
+        .btn:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Passenger Details</h2>
+
+        <form id="passengerForm">
+            <!-- Passenger 1 -->
+            <div class="form-group">
+                <label for="name1">Passenger 1 Name:</label>
+                <input type="text" id="name1" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <input type="radio" id="male1" name="gender1" value="Male">
+                    <label for="male1">Male</label>
+
+                    <input type="radio" id="female1" name="gender1" value="Female">
+                    <label for="female1">Female</label>
+
+                    <input type="radio" id="other1" name="gender1" value="Other">
+                    <label for="other1">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="age1">Age:</label>
+                <input type="number" id="age1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="state1">State:</label>
+                <select id="state1">
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Delhi">Delhi</option>
+                </select>
+            </div>
+
+            <!-- Passenger 2 -->
+            <div class="form-group">
+                <label for="name2">Passenger 2 Name:</label>
+                <input type="text" id="name2">
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <input type="radio" id="male2" name="gender2" value="Male">
+                    <label for="male2">Male</label>
+
+                    <input type="radio" id="female2" name="gender2" value="Female">
+                    <label for="female2">Female</label>
+
+                    <input type="radio" id="other2" name="gender2" value="Other">
+                    <label for="other2">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="age2">Age:</label>
+                <input type="number" id="age2">
+            </div>
+
+            <div class="form-group">
+                <label for="state2">State:</label>
+                <select id="state2">
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Delhi">Delhi</option>
+                </select>
+            </div>
+
+            <!-- Contact Details -->
+            <h3>Contact Details</h3>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" required>
+            </div>
+
+            <button type="button" class="btn" id="proceedBtn">Proceed to Payment</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("proceedBtn").addEventListener("click", function () {
+            // Collect Passenger Details
+            const passenger1 = {
+                name: document.getElementById("name1").value,
+                gender: document.querySelector('input[name="gender1"]:checked')?.value || "",
+                age: document.getElementById("age1").value,
+                state: document.getElementById("state1").value
+            };
+
+            const passenger2 = {
+                name: document.getElementById("name2").value,
+                gender: document.querySelector('input[name="gender2"]:checked')?.value || "",
+                age: document.getElementById("age2").value,
+                state: document.getElementById("state2").value
+            };
+
+            // Collect Contact Details
+            const contact = {
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value
+            };
+
+            // Save Data to Local Storage
+            localStorage.setItem("passenger1", JSON.stringify(passenger1));
+            localStorage.setItem("passenger2", JSON.stringify(passenger2));
+            localStorage.setItem("contact", JSON.stringify(contact));
+
+            // Redirect to Payment Page
+            window.location.href = "payment.html";
+        });
+    </script>
+</body>
+</html>

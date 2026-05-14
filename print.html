@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Ticket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #fff;
+    }
+    .header img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .header .left-icons {
+      display: flex;
+      align-items: center;
+    }
+    .header .right-links {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .header .right-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #000;
+    }
+    .header .right-links .user-icon {
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .dropdown {
+            position: relative;
+            display:block;
+            background-color: white;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .profile img {
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+    .profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 150px;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.profile-dropdown a:hover {
+    background-color: #f0f0f0;
+}
+
+.profile:hover .profile-dropdown {
+    display: inline-block;
+}
+
+    .profile-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 10px;
+      width: 200px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: white;
+      display: none;
+    }
+    .profile-menu a {
+      display: block;
+      padding: 10px;
+      color:white;
+      text-decoration: none;
+    }
+    .profile-menu a:hover {
+      background-color: #f8f9fa;
+    }
+
+   
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 18px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2d3748;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2d3748;
+    }
+
+    .ticket {
+      margin: 30px 0;
+      padding: 20px;
+      border: 2px dashed #d32f2f;
+      border-radius: 10px;
+      background-color: #fff8f8;
+      display: none;
+    }
+
+    .ticket h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .ticket p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #555;
+    }
+    .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer.bg-gray-800 {
+            background-color: #2d3748;
+        }
+        .footer.text-white {
+            color: white;
+        }
+        .footer.p-10 {
+            padding: 10px;
+        }
+        .footer.flex {
+            display: flex;
+        }
+        .footer.flex-wrap {
+            flex-wrap: wrap;
+        }
+        .footer.justify-between {
+            justify-content: space-between;
+        }
+        .footer .left {
+            flex: 1;
+            padding-left: 5px;
+        }
+        .footer .left p.mb-4 {
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .footer .social-icons {
+            display: flex;
+            margin-top: 4px;
+        }
+        .footer .social-icons a {
+            margin-right: 4px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .footer .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 8px;
+        }
+        .footer .right .links {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+        .footer .right .links a {
+            margin-right: 4px;
+            font-size: 1rem;
+            color: white;
+        }
+
+    .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .navbar a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+    .dropdown{
+          position: relative;
+            display:inline-block;
+  }
+
+  .dropdown .dropbtn {
+    background: none; /* Remove background to avoid border around the icon */
+    border: none; /* Remove border around the button */
+    padding: 0; /* Remove padding around the button */
+    cursor: pointer; /* Ensure the icon is clickable */
+  }
+
+
+  .dropdown-content {
+    display: none; /* Hide the dropdown initially */
+    position: absolute;
+    top: 100%; /* Position dropdown below the profile icon */
+    right: 0; /* Align it to the right edge of the container */
+    background-color: white; /* White background for the dropdown */
+    border-radius: 0; /* No border radius for the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow to give a floating effect */
+    z-index: 1000; /* Ensure it's on top of other elements */
+    width: 200px; /* Fixed width for dropdown */
+    max-height: 300px; /* Prevent dropdown from growing too tall */
+    overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+/* Show dropdown content when hovering over the parent */
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown when hovering over the dropdown container */
+}
+
+/* Style for each dropdown item */
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000; /* Black text color */
+}
+
+/* Hover effect for dropdown items */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; 
+   
+
+}
+    @media (max-width: 600px) {
+      footer .footer-links {
+        flex-direction: column;
+      }
+    }
+  </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+  
+  
+  <div class="header">
+    <div class="left-icons">
+  <a href="busfinal.html">
+      <img alt="Bus icon" height="40" src="https://i.postimg.cc/pT9R5jHm/Screenshot-2025-01-21-145608.png" />
+  <a href="trainfinal.html">
+      <img alt="Train icon" height="40" src="https://i.postimg.cc/bJK8xvy3/Screenshot-2025-01-21-145543.png" />
+    </div>
+    <div class="right-links">
+      <a href="#">Contact</a>
+      <a href="#">Help</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+      <img alt="User icon" class="user-icon" height="40" onclick="toggleProfileMenu()" src="https://i.postimg.cc/hjRYDgxT/user-removebg-preview.png" />
+      </button>
+      <div class="dropdown-content">
+        <a href="sms.html">E-mail/SMS</a>
+                <a href="myprofile.html">My profile</a>
+                <a href="cards.html">Cards</a>
+                <a href="wallet.html">Wallet</a>
+                <a href="cancelticket.html">Cancel Ticket</a>
+                <a href="mytrips.html">My Trip</a>
+                <a href="changetraveldatefinal.html">Change travel date</a>
+                <a href="print.html">Show Ticket</a>
+                <a href="home.html">Sign out</a>
+                <a href="home.html">Sign out from all the devices</a>
+
+    </div>
+    </div>
+      <div class="profile-menu" id="profile-menu">
+         <a href="sms.html">E-mail/SMS</a>
+                <a href="myprofile.html">My profile</a>
+                <a href="cards.html">Cards</a>
+                <a href="wallet.html">Wallet</a>
+                <a href="cancelticket.html">Cancel Ticket</a>
+                <a href="mytrips.html">My Trip</a>
+                <a href="changetraveldatefinal.html">Change travel date</a>
+                <a href="print.html">Show Ticket</a>
+                <a href="home.html">Sign out</a>
+                <a href="home.html">Sign out from all the devices</a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>PRINT TICKET</h1>
+    <p>Verify your details, and Print your tickets</p>
+
+    <form onsubmit="showTicket(event)">
+      <label for="ticketNumber">Ticket Number</label>
+      <input type="text" id="ticketNumber" placeholder="Enter your ticket number" required>
+
+      <label for="mobileNumber">Mobile Number</label>
+      <select id="countryCode">
+        <option value="+91">+91 (India)</option>
+        <option value="+1">+1 (USA)</option>
+        <option value="+44">+44 (UK)</option>
+        <option value="+61">+61 (Australia)</option>
+        <option value="+971">+971 (UAE)</option>
+        <!-- Add other country codes here -->
+      </select>
+      <input type="text" id="mobileNumber" placeholder="Enter your mobile number" required>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- Ticket Design -->
+    <div class="ticket" id="ticket">
+      <h2>Your Ticket</h2>
+      <p><strong>Ticket Number:</strong> <span id="displayTicketNumber"></span></p>
+      <p><strong>Mobile Number:</strong> <span id="displayMobileNumber"></span></p>
+      <p><strong>Date:</strong> <span id="currentDate"></span></p>
+    </div>
+  </div>
+  <div class="footer bg-gray-800 text-white p-10 flex flex-wrap margin-bottom justify-between">
+    <div class="left flex-1 pl-5">
+     <p class="mb-4">
+      JourneySync: A new way to book bus and train tickets. Coming Soon !!
+     </p>
+     <div class="social-icons flex mt-4">
+      <a class="mr-4 text-2xl" href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a class="mr-4 text-2xl" href="#"> <i class="fa-brands fa-facebook"></i></a>
+
+     </div>
+    </div>
+    <div class="right flex-1 flex flex-col items-end margin-bottom mt-8 md:mt-0">
+     <div class="links flex flex-wrap mb-4">
+      <a class="mr-4 text-lg" href="#" style="color: white;">
+       About us
+      </a>
+      <a class="mr-4 text-lg" href="#" style="color: white;">
+       Info
+      </a>
+     </div>
+     <p>
+      JourneySync India
+     </p>
+    </div>
+   </div>
+  <script>
+    function showTicket(event) {
+      event.preventDefault();
+
+      const ticketNumber = document.getElementById("ticketNumber").value;
+      const countryCode = document.getElementById("countryCode").value;
+      const mobileNumber = document.getElementById("mobileNumber").value;
+
+      // Display ticket details
+      document.getElementById("displayTicketNumber").innerText = ticketNumber;
+      document.getElementById("displayMobileNumber").innerText = `${countryCode} ${mobileNumber}`;
+      document.getElementById("currentDate").innerText = new Date().toLocaleDateString();
+
+      // Show the ticket section
+      document.getElementById("ticket").style.display = "block";
+    }
+  </script>
+</body>
+</html>

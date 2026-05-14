@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel your Ticket - JourneySync</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+        }
+        .navbar {
+            background-color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .icon {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .icon .active {
+            padding: 10px;
+        }
+        .navbar .icon .inactive {
+            padding: 10px;
+        }
+        .navbar .right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .navbar .right a {
+            margin-right: 20px;
+            color: black;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .navbar .profile {
+            position: relative;
+        }
+        .navbar .profile img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .navbar .profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            margin-top: 10px;
+            width: 200px;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .navbar .profile-menu a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .navbar .profile-menu a:hover {
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .form-group input {
+            border: none;
+            border-bottom: 1px solid #cccccc;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 10px;
+        }
+        .form-group i {
+            font-size: 20px;
+            color: #666666;
+        }
+        .form-group select {
+            border: none;
+            border-bottom: 1px solid #cccccc;
+            padding: 10px;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        .btn {
+            background-color: #003366; /* Deep blue color */
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #002244; /* Darker shade of deep blue */
+        }
+        @media (max-width: 600px) {
+            .form-group {
+                flex-direction: column;
+            }
+            .form-group input, .form-group select {
+                max-width: 100%;
+                margin: 10px 0;
+            }
+        }
+        .footer {
+            background-color: #2D3748;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer .left {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer .left p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .footer .left .social-icons {
+            display: flex;
+            gap: 15px; /* Increased gap for better spacing */
+        }
+        .footer .left .social-icons a {
+            color: white;
+            font-size: 24px; /* Increased icon size */
+            transition: transform 0.2s; /* Smooth transition for hover effect */
+        }
+        .footer .left .social-icons a:hover {
+            transform: scale(1.2); /* Slightly enlarge on hover */
+        }
+        .footer .right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .footer .right .top-links {
+            display: flex;
+            gap: 10px;
+        }
+        .footer .right .top-links a {
+            color: white;
+            text-decoration: underline;
+        }
+        .footer .right .top-links a:hover {
+            text-decoration: none;
+        }
+        .footer .right .bottom-link {
+            color: white;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="icon">
+            <div class="active">
+                <a href="trainfinal.html">
+                    <img src="https://i.postimg.cc/FHyCZCRL/Screenshot-2025-01-21-145608.png" alt="Bus icon" width="40" height="40">
+                </a>
+            </div>
+            <div class="inactive">
+                <a href="busfinal.html">
+                    <img src="https://i.postimg.cc/Sj0VLcbd/Screenshot-2025-01-21-145543.png" alt="Train icon" width="40" height="40">
+                </a>
+            </div>
+        </div>
+        <div class="right">
+            <a href="home.html">Contact</a>
+            <a href="#">Help</a>
+            <div class="profile">
+                <img src="https://i.postimg.cc/MpVNLKsX/user-removebg-preview.png" alt="Profile icon" id="profile-icon">
+                <div class="profile-menu" id="profile-menu">
+                    <a href="sms.html">E-mail/SMS</a>
+                    <a href="myprofile.html">My profile</a>
+                    <a href="cards.html">Cards</a>
+                    <a href="wallet.html">Wallet</a>
+                    <a href="cancelticket.html">Cancel Ticket</a>
+                    <a href="mytrips.html">My Trip</a>
+                    <a href="changetraveldatefinal.html">Change travel date</a>
+                    <a href="print.html">Show Ticket</a>
+                    <a href="home.html">Sign out</a>
+                    <a href="home.html">Sign out from all the devices</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Cancel your Ticket</h1>
+        <div class="form-group">
+            <i class="fas fa-ticket-alt"></i>
+            <input type="text" placeholder="ENTER TICKET NO">
+            <select>
+                <option>+ 91</option>
+            </select>
+            <input type="text" placeholder="ENTER MOBILENO">
+        </div>
+        <button class="btn">SELECT PASSENGERS</button>
+    </div>
+    <div class="footer">
+        <div class="left">
+            <p>JourneySync: A new way to book bus and train tickets. Coming Soon !!</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top-links">
+                <a href="#">About us</a <a href="#">Info</a>
+            </div>
+            <a href="#" class="bottom-link">JourneySync India</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('profile-icon').addEventListener('click', function() {
+            var profileMenu = document.getElementById('profile-menu');
+            if (profileMenu.style.display === 'block') {
+                profileMenu.style.display = 'none';
+            } else {
+                profileMenu.style.display = 'block';
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            var profileMenu = document.getElementById('profile-menu');
+            var profileIcon = document.getElementById('profile-icon');
+            if (!profileMenu.contains(event.target) && !profileIcon.contains(event.target)) {
+                profileMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

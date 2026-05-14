@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Search</title>
+    <script>
+        async function searchBuses() {
+            let response = await fetch("/buses");
+            let buses = await response.json();
+            let searchQuery = document.getElementById("search").value.toLowerCase();
+            let busList = document.getElementById("bus-list");
+            busList.innerHTML = "";
+
+            buses.forEach(bus => {
+                if (bus.route_number.toLowerCase().includes(searchQuery) || 
+                    bus.start_point.toLowerCase().includes(searchQuery) ||
+                    bus.end_point.toLowerCase().includes(searchQuery)) {
+                    
+                    let row = `<tr>
+                        <td>${bus.route_number}</td>
+                        <td>${bus.start_point}</td>
+                        <td>${bus.end_point}</td>
+                        <td>${bus.departure_time}</td>
+                        <td>${bus.arrival_time}</td>
+                    </tr>`;
+                    busList.innerHTML += row;
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h2>Search for Buses</h2>
+    <input type="text" id="search" placeholder="Enter route, start, or end" onkeyup="searchBuses()">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Route</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+            </tr>
+        </thead>
+        <tbody id="bus-list">
+            <!-- Bus data will be displayed here -->
+        </tbody>
+    </table>
+</body>
+</html>

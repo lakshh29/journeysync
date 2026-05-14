@@ -1,0 +1,340 @@
+<html>
+ <head>
+  <title>
+   Payment Page
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #001f3f; /* Navy blue color */
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header span {
+            font-size: 18px;
+        }
+        .header .timer {
+            font-size: 16px;
+            background-color: #c9302c;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .info-bar {
+            background-color: #e7f3ff;
+            color: #333;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .offer-code {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .offer-code input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            width: 100%;
+        }
+        .offer-code input::placeholder {
+            color: #ccc;
+        }
+        .payment-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .payment-info div {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1;
+            margin-right: 10px;
+        }
+        .payment-info div:last-child {
+            margin-right: 0;
+        }
+        .payment-info div img {
+            width: 40px;
+            margin-bottom: 10px;
+        }
+        .payment-info div p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .payment-options {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .payment-options h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .payment-options .option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .payment-options .option input {
+            margin-right: 10px;
+        }
+        .payment-options .option img {
+            width: 30px;
+            margin-right: 5px;
+        }
+        .summary {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .summary h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .summary .details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .summary .details div {
+            flex: 1;
+        }
+        .summary .details div:last-child {
+            text-align: right;
+        }
+        .summary .fare-breakup {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .summary .fare-breakup div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .summary .fare-breakup div:last-child {
+            font-weight: 700;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
+        .footer img {
+            width: 100px;
+            margin: 0 10px;
+        }
+        @media (max-width: 768px) {
+            .payment-info {
+                flex-direction: column;
+            }
+            .payment-info div {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .payment-info div:last-child {
+                margin-bottom: 0;
+            }
+            .summary .details {
+                flex-direction: column;
+            }
+            .summary .details div {
+                text-align: left;
+                margin-bottom: 10px;
+            }
+            .summary .details div:last-child {
+                margin-bottom: 0;
+            }
+        }
+  </style>
+ </head>
+ <body>
+  <div class="header">
+   <span>
+    Delhi → Jaipur
+   </span>
+   <span class="timer">
+    Please pay within:
+    <strong id="timer">
+     9:39
+    </strong>
+    minutes
+   </span>
+  </div>
+  <div class="info-bar">
+   PG charges will be added in the next step. ₹0 PG charge for UPI Payments.
+  </div>
+  <div class="container">
+   <div class="offer-code">
+    <input placeholder="ENTER OFFER CODE" type="text"/>
+   </div>
+   <div class="payment-info">
+    <div>
+     <img alt="Safe and secure online payments" src="https://i.postimg.cc/7PM6gVqG/safe-payments.png"/>
+     <p>
+      Safe and secure online payments
+     </p>
+    </div>
+    <div>
+     <img alt="60+ million transactions" src="https://i.postimg.cc/3NnYztwt/transactions.png"/>
+     <p>
+      60+ million transactions
+     </p>
+    </div>
+   </div>
+   <div class="payment-options">
+    <h3>
+     OTHER PAYMENT OPTIONS
+    </h3>
+    <div class="option">
+     <input id="credit-card" name="payment" type="radio"/>
+     <label for="credit-card">
+      Credit Card
+     </label>
+     <img alt="Visa" src="https://i.postimg.cc/mkGyKSn1/visa.png"/>
+     <img alt="MasterCard" src="https://i.postimg.cc/9QmKzrBq/mastercard.png"/>
+     <img alt="RuPay" src="https://i.postimg.cc/jdJ0JsM9/rupay.png"/>
+    </div>
+    <div class="option">
+     <input id="debit-card" name="payment" type="radio"/>
+     <label for="debit-card">
+      Debit Card
+     </label>
+     <img alt="Visa" src="https://i.postimg.cc/mkGyKSn1/visa.png"/>
+     <img alt="MasterCard" src="https://i.postimg.cc/9QmKzrBq/mastercard.png"/>
+     <img alt="RuPay" src="https://i.postimg.cc/jdJ0JsM9/rupay.png"/>
+    </div>
+    <h3>
+     UPI
+    </h3>
+    <div class="option">
+     <input id="qr-code" name="payment" type="radio"/>
+     <label for="qr-code">
+      Pay through QR code
+     </label>
+    </div>
+    <div class="option">
+     <input id="upi-id" name="payment" type="radio"/>
+     <label for="upi-id">
+      Add a new UPI ID
+     </label>
+     <img alt="UPI" src="https://i.postimg.cc/9FRn6xzz/phonepe.png"/>
+    </div>
+   </div>
+   <div class="summary">
+    <h3>
+     3E
+    </h3>
+    <div class="details">
+     <div>
+      <p>
+       Jat Aii Express 12414
+      </p>
+      <p>
+       Departure
+      </p>
+      <p>
+       29/Jan/2025 4:15 am
+      </p>
+     </div>
+     <div>
+      <p>
+       Available 2
+      </p>
+      <p>
+       Boarding Station
+      </p>
+      <p>
+       Delhi
+      </p>
+      <p>
+       Destination
+      </p>
+      <p>
+       Jaipur
+      </p>
+     </div>
+    </div>
+    <div class="details">
+     <div>
+      <p>
+       User (20,F)
+      </p>
+     </div>
+    </div>
+    <div class="fare-breakup">
+     <div>
+      <span>
+       Total Fare
+      </span>
+      <span>
+       INR 1438.4
+      </span>
+     </div>
+     <div>
+      <span>
+       Total Payable
+      </span>
+      <span>
+       INR 1438.4
+      </span>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">
+   <img alt="MasterCard SecureCode" src="https://i.postimg.cc/D0yKQ1cL/verisign-secured.png"/>
+   <img alt="MasterCard SecureCode" src="https://i.postimg.cc/SRjvNdrT/master-card-secure-code.png"/>
+   <img alt="Verified by RuPay" src="https://i.postimg.cc/NMsnZBrw/mastercard.png"/>
+  </div>
+  <script>
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        var timeLimit = 9 * 60 + 39, // 9 minutes and 39 seconds
+            display = document.querySelector('#timer');
+        startTimer(timeLimit, display);
+    };
+  </script>
+ </body>
+</html>

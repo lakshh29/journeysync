@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #ffffff;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+        .profile {
+            position: relative;
+        }
+        .profile img {
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            width: 150px;
+        }
+        .profile-dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        .profile-dropdown a:hover {
+            background-color: #f0f0f0;
+        }
+        .profile:hover .profile-dropdown {
+            display: block;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .faq-header {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .faq-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .faq-description a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .faq-description a:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            width: 100%;
+        }
+        .accordion-item {
+            background-color: #001f3f;
+            color: white; /* White text */
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: background-color 0.2s ease;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-item:hover {
+            background-color: #836953; /* Darker green on hover */
+        }
+        .accordion-item i {
+            font-size: 24px;
+        }
+        .panel {
+            padding: 0 15px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+            font-size: 16px;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            .faq-header {
+                font-size: 28px;
+            }
+            .faq-description {
+                font-size: 16px;
+            }
+            .accordion-item {
+                font-size: 16px;
+            }
+        }
+        /* Footer Styles */
+        .footer {
+            background-color: #2D3748; /* Deep blue color */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px; /* Add margin to slide down the footer */
+        }
+        .footer.bg-gray-800 {
+            background-color: #2d3748;
+        }
+        .footer.text-white {
+            color: white;
+        }
+        .footer.p-10 {
+            padding: 10px;
+        }
+        .footer .left {
+            flex: 1;
+            padding-left: 5px;
+        }
+        .footer .left p.mb-4 {
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .footer .social-icons {
+            display: flex;
+            margin-top: 4px;
+        }
+        .footer .social-icons a {
+            margin-right: 4px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .footer .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 8px;
+        }
+        .footer .right .links {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+        .footer .right .links a {
+            margin-right: 4px;
+            font-size: 1rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <a href="#">Contact</a>
+            <a href="#">Help</a>
+            <div class="profile">
+                <img src="https://i.postimg.cc/hjRYDgxT/user-removebg-preview.png" width="50" height="50" alt="Profile">
+                <div class="profile-dropdown">
+                    <a href="#">E-mail/SMS</a>
+                    <a href="#">My profile</a>
+                    <a href="#">Cards</a>
+                    <a href="#">Wallet</a>
+                    <a href="#">Cancel Ticket</a>
+                    <a href="#">My Trip</a>
+                    <a href="#">Change travel date</a>
+                    <a href="#">Show Ticket</a>
+                    <a href="#">Sign out</a>
+                    <a href="#">Sign out from all the devices</a>  
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Home</a> &gt; <a href="#">About us</a> &gt; FAQs
+        </div>
+        <div class="faq-header">FAQs</div>
+        <div class="faq-description">
+            We’re sure you have questions about JourneySync so we’ve put together some a list of the most frequently asked questions about us.
+            <br><br>
+        </div>
+        <div class="accordion">
+            <button class="accordion-item">How can I book a ticket? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>To book a ticket, sign in to your JourneySync account, select your destination and travel date, choose your seat, and complete the payment.</p>
+            </div>
+            <button class="accordion-item">Can I cancel my ticket? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Yes, tickets can be canceled before the departure time. Click on the profile icon given at top-right, and select the "Cancel Ticket" option.</p>
+            </div>
+            <button class="accordion-item">Are there special seats available?<i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Yes, JourneySync provides special seats for senior citizens, specially-abled individuals, and women to ensure a safe and comfortable journey.</p>
+            </div>
+            <button class="accordion-item">How do I know if my ticket is confirmed? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Once payment is completed, you’ll receive a confirmation email or SMS with your ticket details. You can also check your booking status under "My Bookings" in your account.</p>
+            </div>
+            <button class="accordion-item">Do I need an account to book tickets? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Yes, having an account helps manage your bookings, cancellations, and preferences seamlessly.</p>
+            </div>
+            <button class="accordion-item">Can I book multiple tickets at once? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Yes, you can book tickets for multiple passengers in a single transaction by adding the required number of seats during booking.</p>
+            </div>
+            <button class="accordion-item">How can I provide feedback? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+   <p>We value your feedback! Visit the "Contact Us" page to share your suggestions or concerns.</p>
+            </div>
+            <button class="accordion-item">Does JourneySync operate in all cities? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>JourneySync currently operates in select cities. Check the availability for your route during the booking process.</p>
+            </div>
+            <button class="accordion-item">Are there discounts for frequent travelers? <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>JourneySync offers loyalty rewards and special discounts for frequent travelers. Check the "Offers" section for updates.</p>
+            </div>
+            <button class="accordion-item">Is there a helpline for customer support?  <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Yes, you can contact our 24/7 customer support through the "Help" section on the website. </p>
+            </div>
+            <button class="accordion-item">Are pets allowed on trains?  <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Pet policies vary depending on train operators. Please check the specific train’s rules during booking. </p>
+            </div>
+            <button class="accordion-item">Can I get a refund for canceled tickets?  <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Yes, refunds are processed according to the cancellation policy. The amount will be credited to your original payment method. </p>
+            </div>
+            <button class="accordion-item">Can I update passenger details after booking?  <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Currently, updating passenger details after booking is not supported. </p>
+            </div>
+            <button class="accordion-item">Does JourneySync support group bookings?  <i class="fas fa-plus"></i></button>
+            <div class="panel">
+                <p>Yes, you can book tickets for large groups. Contact customer support for special assistance. </p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="left">
+            <p class="mb-4">
+                JourneySync: A new way to book bus and train tickets. Coming Soon !!
+            </p>
+            <div class="social-icons">
+                <a href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="links">
+                <a href="#">About us</a>
+                <a href="#">Info</a>
+            </div>
+            <p>JourneySync India</p>
+        </div>
+    </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion-item");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                var icon = this.querySelector("i");
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    icon.classList.remove("fa-minus");
+                    icon.classList.add("fa-plus");
+                } else {
+                    panel.style.display = "block";
+                    icon.classList.remove("fa-plus");
+                    icon.classList.add("fa-minus");
+                }
+            });
+        }
+        // Profile dropdown logic
+        const profileButton = document.querySelector(".profile img");
+        const profileDropdown = document.querySelector(".profile-dropdown");
+
+        // Toggle dropdown on profile button click
+        profileButton.addEventListener("click", (e) => {
+            e.stopPropagation();  // Prevent the document-wide click event from hiding the dropdown
+            const isVisible = profileDropdown.style.display === "block";
+            profileDropdown.style.display = isVisible ? "none" : "block";
+        });
+
+        // Hide profile dropdown if clicked outside
+        document.addEventListener("click", (e) => {
+            if (!profileButton.contains(e.target) && !profileDropdown.contains(e.target)) {
+                profileDropdown.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

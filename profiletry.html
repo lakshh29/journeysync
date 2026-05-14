@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #fff;
+    }
+    .header img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .header .left-icons {
+      display: flex;
+      align-items: center;
+    }
+    .header .right-links {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .header .right-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #000;
+    }
+    .header .right-links .user-icon {
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    .sidebar {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+        }
+
+    .sidebar h3 {
+            margin-bottom: 20px;
+        }
+
+    .sidebar ul {
+            list-style: none;
+        }
+
+    .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+    .sidebar ul li a {
+            color: #555;
+            text-decoration: none;
+        }
+
+    .contents {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            margin-left: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    .contents h2 {
+            margin-bottom: 20px;
+        }
+    .profile-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 10px;
+      width: 200px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    .profile-menu a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+    }
+    .profile-menu a:hover {
+      background-color: #f8f9fa;
+    }
+
+        .container {
+            display: flex;
+            margin: 105px;
+        }
+
+        .contents {
+            width: 75%;
+            margin-left: 20px;
+        }
+
+        .contents .profile-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .contents .profile-card h2 {
+            margin-bottom: 20px;
+        }
+
+        .profile-card .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-row label {
+            width: 30%;
+            font-weight: bold;
+        }
+
+        .form-row input,
+        .form-row select {
+            width: 65%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-row input[type="radio"] {
+            width: auto;
+        }
+
+        .form-row .radio-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn {
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* .footer {
+      background-color: #2d3748;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+     margin-bottom: auto;
+    }
+    .footer .left p {
+      text-align: left;
+    }
+    .social-icons {
+      display: flex;
+      margin-top: 4px;
+    }
+    .social-icons a {
+      margin-right: 10px;
+      font-size: 1.5rem;
+      color: white;
+    } */
+    .footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: auto;
+        }
+        .footer .left p {
+            text-align: left;
+        }
+        .social-icons {
+            display: flex;
+            margin-top: 4px;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: white;
+        }
+    .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .navbar a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+    .dropdown{
+          position: relative;
+            display:inline-block;
+  }
+
+  .dropdown .dropbtn {
+    background: none; /* Remove background to avoid border around the icon */
+    border: none; /* Remove border around the button */
+    padding: 0; /* Remove padding around the button */
+    cursor: pointer; /* Ensure the icon is clickable */
+  }
+
+
+  .dropdown-content {
+    display: none; /* Hide the dropdown initially */
+    position: absolute;
+    top: 100%; /* Position dropdown below the profile icon */
+    right: 0; /* Align it to the right edge of the container */
+    background-color: white; /* White background for the dropdown */
+    border-radius: 0; /* No border radius for the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow to give a floating effect */
+    z-index: 1000; /* Ensure it's on top of other elements */
+    width: 200px; /* Fixed width for dropdown */
+    max-height: 300px; /* Prevent dropdown from growing too tall */
+    overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+/* Show dropdown content when hovering over the parent */
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown when hovering over the dropdown container */
+}
+
+/* Style for each dropdown item */
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000; /* Black text color */
+}
+
+/* Hover effect for dropdown items */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Light background when hovering over items */
+}  main 
+  {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+  }
+
+  .sidebar {
+  width: 250px;
+  background-color: white;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  }
+
+        .sidebar h3 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            margin-left: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+        }
+
+        .upcoming {
+            margin-top: 20px;
+            color: #2d3748;
+            font-weight: bold;
+        }
+
+        .no-trips {
+            margin-top: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: center;
+            color: #555;
+        }
+
+        .no-trips a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        /* .footer {
+      background-color: #2d3748;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+     margin-bottom: auto;
+    }
+    .footer .left p {
+      text-align: left;
+    } */
+    .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .navbar a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+    .dropdown{
+          position: relative;
+            display:inline-block;
+  }
+
+  .dropdown .dropbtn {
+    background: none; /* Remove background to avoid border around the icon */
+    border: none; /* Remove border around the button */
+    padding: 0; /* Remove padding around the button */
+    cursor: pointer; /* Ensure the icon is clickable */
+  }
+
+
+  .dropdown-content {
+    display: none; /* Hide the dropdown initially */
+    position: absolute;
+    top: 100%; /* Position dropdown below the profile icon */
+    right: 0; /* Align it to the right edge of the container */
+    background-color: white; /* White background for the dropdown */
+    border-radius: 0; /* No border radius for the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow to give a floating effect */
+    z-index: 1000; /* Ensure it's on top of other elements */
+    width: 200px; /* Fixed width for dropdown */
+    max-height: 300px; /* Prevent dropdown from growing too tall */
+    overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+/* Show dropdown content when hovering over the parent */
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown when hovering over the dropdown container */
+}
+
+/* Style for each dropdown item */
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000; /* Black text color */
+}
+
+/* Hover effect for dropdown items */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; 
+}
+    .social-icons {
+      display: flex;
+      margin-top: 4px;
+    }
+    .social-icons a {
+      margin-right: 10px;
+      font-size: 1.5rem;
+      color: white;
+    }
+    main {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+        }
+        .content {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            margin-left: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+        
+    </style>
+</head>
+<body>
+    
+  <div class="header">
+    <div class="left-icons">
+ <a href="busfinal.html">
+      <img alt="Bus icon" height="40" src="https://i.postimg.cc/pT9R5jHm/Screenshot-2025-01-21-145608.png" />
+ <a href="trainfinal.html">
+      <img alt="Train icon" height="40" src="https://i.postimg.cc/bJK8xvy3/Screenshot-2025-01-21-145543.png" />
+    </div>
+    <div class="right-links">
+      <a href="home.html">Contact</a>
+      <a href="help.html">Help</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+        <img alt="User icon" class="user-icon" height="40" onclick="toggleProfileMenu()" src="https://i.postimg.cc/hjRYDgxT/user-removebg-preview.png" />
+        </button>
+        <div class="dropdown-content">
+        <a href="sms.html">E-mail/SMS</a>
+                <a href="myprofile.html">My profile</a>
+                <a href="cards.html">Cards</a>
+                <a href="wallet.html">Wallet</a>
+                <a href="cancelticket.html">Cancel Ticket</a>
+                <a href="mytrips.html">My Trip</a>
+                <a href="changetraveldatefinal.html">Change travel date</a>
+                <a href="print.html">Show Ticket</a>
+                <a href="home.html">Sign out</a>
+                <a href="home.html">Sign out from all the devices</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main>
+      <aside class="sidebar">
+        <h3>User</h3>
+        <ul>
+            <li><a href="mytrips.html"> My Trips </a></li>
+            <li><a href="cards.html"> Wallets/cards </a></li>
+            <li><a href="Myprofile.html"> My profile </a></li>
+            <li><a href="cards.html"> My Wallet </a></li>
+
+        </ul>
+      </aside>
+      <section class="content"> 
+      <div class="container">
+        <div class="contents">
+            <div class="profile-card">
+                <h2>My Profile</h2>
+                <form>
+                    <div class="form-row">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-row">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob">
+                    </div>
+                    <div class="form-row">
+                        <label>Gender:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gender" value="male"> Male</label>
+                            <label><input type="radio" name="gender" value="female"> Female</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="email">Email ID:</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-row">
+                        <label for="phone">Mobile Number:</label>
+                        <input type="tel" id="phone" placeholder="Enter your mobile number">
+                    </div>
+                    <button type="button" class="edit-btn">Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>     
+  </section>
+</main>
+ <footer>
+    <div class="footer bg-gray-800 text-white p-10 flex flex-wrap margin-bottom justify-between">
+     <div class="left flex-1 pl-5">
+      <p class="mb-4">
+       JourneySync: A new way to book bus and train tickets. Coming Soon !!
+      </p>
+      <div class="social-icons flex mt-4">
+       <a class="mr-4 text-2xl" href="#">
+        <i class="fa-brands fa-twitter"></i>
+        </i>
+       </a>
+       <a class="mr-4 text-2xl" href="#">
+        <i class="fa-brands fa-instagram"></i>
+        </i>
+       </a>
+       <a class="mr-4 text-2xl" href="#">
+        <i class="fa-brands fa-linkedin"></i>
+        </i>
+       </a>
+       <a class="mr-4 text-2xl" href="#">
+        <i class="fa-brands fa-facebook"></i>
+        </i>
+       </a>
+      </div>
+     </div>
+     <div class="right flex-1 flex flex-col items-end margin-bottom mt-8 md:mt-0">
+      <div class="links flex flex-wrap mb-4">
+       <a class="mr-4 text-lg" href="#" style="color: white;">
+        About us
+       </a>
+       <a class="mr-4 text-lg" href="#" style="color: white;">
+        Info
+       </a>
+      </div>
+      <p>
+       JourneySync India
+      </p>
+     </div>
+    </div>
+   </footer> 
+<!-- <footer>
+  <div class="footer bg-gray-800 text-white p-10 flex flex-wrap margin-bottom justify-between">
+   <div class="left flex-1 pl-5">
+    <p class="mb-4">
+     JourneySync: A new way to book bus and train tickets. Coming Soon !!
+    </p>
+    <div class="social-icons flex mt-4">
+     <a class="mr-4 text-2xl" href="#">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+     <a class="mr-4 text-2xl" href="#">
+      <i class="fab fa-instagram">
+        <img src="insta.png">
+      </i>
+     </a>
+     <a class="mr-4 text-2xl" href="#">
+      <i class="fab fa-linkedin">
+      </i>
+     </a>
+     <a class="mr-4 text-2xl" href="#">
+      <i class="fab fa-facebook">
+      </i>
+     </a>
+    </div>
+   </div>
+   <div class="right flex-1 flex flex-col items-end margin-bottom mt-8 md:mt-0">
+    <div class="links flex flex-wrap mb-4">
+     <a class="mr-4 text-lg" href="#" style="color: white;">
+      About us
+     </a>
+     <a class="mr-4 text-lg" href="#" style="color: white;">
+      Info
+     </a>
+    </div>
+    <p>
+     JourneySync India
+    </p>
+   </div>
+  </div>
+</footer> -->
+
+</footer>
+</body>
+</html> 

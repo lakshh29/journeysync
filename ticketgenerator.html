@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ticket Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #007bff;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: white;
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .ticket {
+            display: none;
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 20px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .ticket h3 {
+            text-align: center;
+            margin: 5px 0;
+            color: #007bff;
+        }
+        .ticket p {
+            margin: 5px 0;
+        }
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ticket-header img {
+            height: 50px;
+        }
+        .qr-code {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .print-btn {
+            margin-top: 10px;
+            background: #28a745;
+        }
+        .print-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Generate Your Ticket</h2>
+        <button onclick="generateTicket()">Generate Ticket</button>
+
+        <div class="ticket" id="ticket">
+            <div class="ticket-header">
+                <img src="https://i.postimg.cc/pT9R5jHm/Screenshot-2025-01-21-145608.png" alt="Bus Logo"><br><br><br><br><br><br>
+                <h3>Bus E-Ticket</h3>
+            </div>
+            <p><strong>Passenger Name:</strong> <span id="name"></span></p><br>
+            <p><strong>PNR No:</strong> <span id="pnr"></span></p><br>
+            <p><strong>From:</strong> <span id="fromvalue"></span></p><br>
+            <p><strong>To:</strong> <span id="tovalue"></span></p><br>
+            <p><strong>Seat No:</strong> <span id="seat"></span></p><br>
+            <p><strong>Departure Time:</strong> <span id="time"></span></p><br>
+            <p><strong>Date:</strong> <span id="dateValue"></span></p><br>
+            <p><strong>Bus No:</strong> <span id="bus"></span></p><br>
+            <div class="qr-code" id="qrcode"></div>
+            <button class="print-btn" onclick="printTicket()">Print Ticket 🖨️</button>
+        </div>
+    </div>
+
+    <script>
+        function generateTicket() {
+            console.log("Generating ticket...");
+            const names = ["Priyanshi"];
+            const places = ["Jaipur", "Delhi", "Mumbai", "Pune", "Kolkata"];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const fromPlace = localStorage.getItem("from") || places[Math.floor(Math.random() * places.length)];
+            const toPlace = localStorage.getItem("to") || places[Math.floor(Math.random() * places.length)];
+            const seatNumber = Math.floor(Math.random() * 50) + 1;
+            const time = `${Math.floor(Math.random() * 12) + 1}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')} ${Math.random() > 0.5 ? "AM" : "PM"}`;
+            const pnrNumber = Math.floor(Math.random() * 9000000000) + 1000000000;
+            const busNumber = `RJ ${Math.floor(Math.random() * 80) + 10} XX ${Math.floor(Math.random() * 9999) + 1000}`;
+            const dateValue = localStorage.getItem("date") || new Date().toLocaleDateString();
+
+            document.getElementById("name").textContent = randomName;
+            document.getElementById("fromvalue").textContent = fromPlace;
+            document.getElementById("tovalue").textContent = toPlace;
+            document.getElementById("seat").textContent = seatNumber;
+            document.getElementById("time").textContent = time;
+            document.getElementById("pnr").textContent = pnrNumber;
+            document.getElementById("bus").textContent = busNumber;
+            document.getElementById("dateValue").textContent = dateValue;
+
+            document.getElementById("ticket").style.display = "block";
+
+            // Generate QR Code
+            document.getElementById("qrcode").innerHTML = "";
+            new QRCode(document.getElementById("qrcode"), `PNR: ${pnrNumber}, Seat: ${seatNumber}, Date: ${dateValue}, Bus: ${busNumber}, ${fromPlace} → ${toPlace}`);
+        }
+
+        function printTicket() {
+            const ticketContent = document.getElementById("ticket").innerHTML;
+            const originalContent = document.body.innerHTML;
+
+            document.body.innerHTML = `<div class="container">${ticketContent}</div>`;
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+    </script>
+
+</body>
+</html>

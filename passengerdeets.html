@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .modal {
+            width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .modal-header {
+            background-color: #a00050;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+        .modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .modal-header .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .modal-header .icon {
+            position: absolute;
+            top: 20px;
+            right: 60px;
+            font-size: 24px;
+        }
+        .modal-content {
+            padding: 20px;
+        }
+        .modal-content h3 {
+            color: #a00050;
+            font-size: 18px;
+            margin-top: 0;
+        }
+        .modal-content p {
+            font-size: 14px;
+            color: #333;
+        }
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .features li img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .features li span {
+            font-size: 14px;
+            color: #333;
+        }
+        .how-it-works {
+            margin-top: 20px;
+        }
+        .how-it-works h4 {
+            color: #a00050;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .how-it-works p {
+            font-size: 14px;
+            color: #333;
+        }
+        .terms-conditions, .faqs {
+            margin-top: 20px;
+        }
+        .terms-conditions h4, .faqs h4 {
+            color: #a00050;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .terms-conditions p, .faqs p {
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <div class="navbar bg-white p-4 flex items-center shadow-md">
+        <div class="icon flex items-center">
+            <div class="active p-2">
+ <a href="busfinal.html">
+                <img alt="Bus icon" height="40" src="https://i.postimg.cc/FHyCZCRL/Screenshot-2025-01-21-145608.png" width="40"/>
+            </div>
+            <div class="inactive p-2">
+ <a href="trainfinal.html">
+                <img alt="Train icon" height="40" src="https://i.postimg.cc/Sj0VLcbd/Screenshot-2025-01-21-145543.png" width="40"/>
+            </div>
+        </div>
+        <div class="right ml-auto flex items-center relative">
+            <a class="mr-4 text-black text-lg" href="#">Contact</a>
+            <a class="mr-4 text-black text-lg" href="#">Help</a>
+            <div class="profile relative">
+                <img alt="Profile icon" class="w-10 h-10 cursor-pointer" height="40" id="profile-icon" src="https://i.postimg.cc/MpVNLKsX/user-removebg-preview.png" width="40"/>
+                <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden" id="profile-menu">
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="cancelticket.html">Cancel Ticket</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="changetraveldatefinal.html">Change Travel Date</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="print.html">Show My Ticket</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="sms.html">Email/SMS</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="myprofile.html">My Profile</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="mytrips.html">My Trips</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="cards.html">Cards</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="wallet.html">Wallet</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="home.html">Sign Out</a>
+                    <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="home.html">Sign Out from All Devices</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto p-4 max-w-lg">
+        <div class="header bg-white p-4 rounded-lg shadow-md flex items-center mb-4">
+            <img alt="Train icon" class="w-8 h-8 mr-4" height="32" src="https://i.postimg.cc/Sj0VLcbd/Screenshot-2025-01-21-145543.png" width="32"/>
+            <div>
+                <h1 class="text-lg font-bold">Aii Vandebharat | 20978</h1>
+                <p class="text-sm text-gray-600">CC- <span class="text-green-600">352 Available</span> | General | Sat, 25 Jan</p>
+                <div class="availability bg-green-100 border border-green-500 rounded-lg p-2 mt-2 flex justify-between items-center">
+                    <span class="text-sm font-medium">AC Chair car (CC)</span>
+                    <span class="status text-green-600 font-bold">Available 352</span>
+                </div>
+            </div>
+        </div>
+        <div class="details bg-gray-50 border border-gray-300 rounded-lg p-4 mb-4">
+            <div class="time flex justify-between items-center mb-2">
+                <span class="text-sm text-gray-600">25 Jan, 06:28 PM</span>
+                <span class="text-sm text-gray-600">03h 37min</span>
+                <span class="text-sm text-gray-600">25 Jan, 10:05 PM</span>
+            </div>
+            <div class="station flex justify-between items-center mb-2">
+                <p class="text-base font-medium">Delhi Cantt</p>
+                <p class="text-base font-medium">Jaipur</p>
+            </div>
+            <div class="boarding">
+                <span class="text-sm text-gray-600">Boarding Station</span>
+                <div class="station flex justify-between items-center mt-1">
+                    <span class="text-base font-bold">Delhi Cantt (DEC)</span>
+                    <span class="change-station text-blue-600 text-sm cursor-pointer" onclick="openModal('stationModal')">Change station</span>
+                </div>
+                <p class="text-sm text-gray-600">06:28 PM · Sat, 25 Jan</p>
+            </div>
+        </div>
+        <div class="username bg-white p-4 rounded-lg shadow-md mb-4">
+            <div>
+                <h2 class="text-base font-bold flex items-center">
+                    <i class="fas fa-user text-red-600 text-xl mr-2"></i>
+                    IRCTC Username
+                </h2>
+                <p class="text-sm text-gray-600">Your username is required to book tickets</p>
+                <input class="w-full p-2 border border-gray-300 rounded mt-2 mb-2" placeholder="IRCTC username" type="text"/>
+                <a class="text-blue-600 text-sm" href="https://www.irctc.co.in/nget/profile/user-signup" onclick="openModal('emailModal')">I don't have an IRCTC username</a>
+                <br/>
+                <a class="text-blue-600 text-sm" href="https://www.irctc.co.in/nget/profile/forgot-password?pageType=P" onclick="openModal('forgotUsernameModal')">
+                    <target="_blank">
+                    Forgot username</a>
+            </div>
+        </div>
+        <div class="passenger-details bg-white p-4 rounded-lg shadow-md mb-4">
+            <img alt="Passenger icon" class="w-5 h-5 mr-4" height="20" src="https://storage.googleapis.com/a1aa/image/YBIygwhLjE7XDthivCUQ0TmhP2ezyYCv1nb8ZEfxvLYXlDIUA.jpg" width="20"/>
+            <div>
+                <h2 class="text-base font-bold">Passenger Details</h2>
+                <div id="passenger-list">
+                    <div class="add-passenger flex items-center justify-between mb-2">
+                        <input class="w-1/3 p-2 border border-gray-300 rounded mr-2" placeholder="Passenger Name" type="text"/>
+                        <input class="w-1/3 p-2 border border-gray-300 rounded mr-2" placeholder="Age" type="text"/>
+                        <input class="w-1/3 p-2 border border-gray-300 rounded" placeholder="Gender" type="text"/>
+                    </div>
+                </div>
+                <button class="know-more bg-blue-600 text-white p-2 rounded mt-2 w-full" onclick="addPassenger()">Add New Passenger</button>
+            </div>
+        </div>
+        <div class="contact-details bg-white p-4 rounded-lg shadow-md mb-4">
+            <img alt="Contact icon" class="w-5 h-5 mr-4" height="20" src="https://storage.googleapis.com/a1aa/image/BPVZN1gfKcw0TqncfjT041QoosFrBwIPc3P7e1nP7SOyKHQoA.jpg" width="20"/>
+            <div>
+                <h2 class="text-base font-bold">Contact Details</h2>
+                <input class="w-full p-2 border border-gray-300 rounded mt-2 mb-2" placeholder="Contact Name" type="text"/>
+                <input class="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Contact Number" type="text"/>
+                <input class="w-full p-2 border border-gray-300 rounded" placeholder="Email" type="text"/>
+            </div>
+        </div>
+        <div class="cancellation-policy bg-white p-4 rounded-lg shadow-md mb-4">
+            <img alt="Cancellation icon" class="w-8 h-8 mr-4" height="32" src="https://storage.googleapis.com/a1aa/image/eKGq0g8k74RRXKKn1U9I7E5faxRhqeqnlutebejm40F3qcAhC.jpg" width="32"/>
+            <div>
+                <h2 class="text-base font-bold">Free Cancellation</h2>
+                <p class="text-sm text-gray-600">Great choice! Full ticket fare will be refunded if you cancel before 24 hrs of train departure.</p>
+                <button class="know-more bg-blue-600 text-white p-2 rounded mt-2 w-full" onclick="openModal('cancellationModal')">Know More</button>
+            </div>
+        </div>
+
+        <!-- Free Cancellation Policy Modal -->
+        <div class="modal fixed z-10 inset-0 overflow-y-auto hidden" id="cancellationModal">
+            <div class="modal-content bg-white rounded-lg shadow-lg p-6 mx-auto mt-20 max-w-md">
+                <span class="close text-gray-600 text-2xl cursor-pointer float-right" onclick="closeModal('cancellationModal')">×</span>
+                <h2 class="text-lg font-bold mb-4">Free Cancellation Policy on JourneySync 🚆</h2>
+                <h3>JourneySync is dedicated to providing a seamless and worry-free travel experience. Our Free Cancellation Policy ensures flexibility in your travel plans, with generous refund terms that stand out!</h3>
+                <h3>Benefits of Free Cancellation with JourneySync</h3>
+                <ul class="features">
+                    <li>
+                        <img alt="Icon representing zero cancellation fee" height="24" src="https://storage.googleapis.com/a1aa/image/Cr3VcUxXrmZqMd8BRF02uba4u5fqwdBS9n2zAKaeoNvN3WIUA.jpg" width="24"/>
+                        <span>Zero cancellation fee for cancellations made 36 hours before train departure.</span>
+                    </li>
+                    <li>
+                        <img alt="Icon representing 50% refund" height="24" src="https://storage.googleapis.com/a1aa/image/wLiFRMMLmwLPKt4iM7jXU6RMdiOFhU9LW7ncvEOtqWYkuFCF.jpg" width="24"/>
+                        <span>50% refund for cancellations made within 36 hours of train departure.</span>
+                    </li>
+                    <li>
+                        <img alt="Icon representing instant refund" height="24" src="https://storage.googleapis.com/a1aa/image/XfIkGi5j7uwlYC45ItQ0CKM5DjgjbMh9Jm8U7HXBkfWM3WIUA.jpg" width="24"/>
+                        <span>Instant processing of eligible refunds.</span>
+                    </li>
+                    <li>
+                        <img alt="Icon representing dedicated customer support" height="24" src="https://storage.googleapis.com/a1aa/image/2JZ3P0Xsxo7fJqE4XhmfJnrMqGffZ7WGPKfNuWX5AtexytFCF.jpg" width="24"/>
+                        <span>Dedicated customer support to address your queries promptly.</span>
+                    </li>
+                </ul>
+                <div class="how-it-works">
+                    <h4>How It Works:</h4>
+                    <p>1️⃣ Opt for ‘Free Cancellation’ while booking your train ticket on the JourneySync app.</p>
+                    <p>2️⃣ Cancel your ticket 36 hours before departure for a full refund of the ticket fare with no penalties.</p>
+                    <p>3️⃣ For cancellations made within 36 hours of departure, enjoy a 50% refund.</p>
+                    <p>4️⃣ Refunds will be processed instantly, ensuring a hassle-free experience.</p>
+                </div>
+                <div class="terms-conditions">
+                    <h4>Terms and Conditions:</h4>
+                    <p>The Free Cancellation service is valid only on train tickets booked via the JourneySync app.</p>
+                    <p>Full refunds are applicable only for cancellations made 36 hours prior to the train departure.</p>
+                    <p>For cancellations made within 36 hours of train departure, a 50% refund of the ticket fare will be processed.</p>
+                    <p>Free Cancellation premiums, app convenience fees, and payment gateway charges (if any) are non-refundable.</p>
+                    <p>This service is not valid for tickets where cancellation is attempted after the train departure.</p>
+                    <p>Misuse or abuse of this service may result in cancellation of benefits and tickets without refund.</p>
+                    <p>JourneySync reserves the right to modify, suspend, or terminate this policy at any time without prior notice.</p>
+                    <p>All disputes are subject to the jurisdiction of New Delhi courts.</p>
+                </div>
+                <div class="faqs">
+                    <h4>Frequently Asked Questions (FAQs)</h4>
+                    <p><strong>1. What is Free Cancellation?</strong></p>
+                    <p>Free Cancellation is a feature that allows you to cancel your train tickets without incurring penalties, ensuring you get a full or partial refund as per the cancellation timeline.</p>
+                    <p><strong>2. How can I avail Free Cancellation?</strong></p>
+                    <p>Simply opt for the Free Cancellation service during the booking process on the JourneySync app.</p>
+                    <p><strong>3. What are the benefits of Free Cancellation?</strong></p>
+                    <p>Full refund of the ticket fare for cancellations made 36 hours before departure.</p>
+                    <p>50% refund for cancellations made within 36 hours of departure.</p>
+                    <p>Instant refund processing for all eligible cancellations.</p>
+                    <p><strong>4. How many hours before the train departure can I cancel my ticket?</strong></p>
+                    <p>You can cancel your ticket up to the departure time. However:</p>
+                    <p>Cancel before 36 hours: Receive a full refund.</p>
+                    <p>Cancel within 36 hours: Receive a 50% refund.</p>
+                    <p><strong>5. How will I receive the refund if I opt for Free Cancellation?</strong></p>
+                    <p>Refunds will be credited to the original payment method used during booking.</p>
+                    <p><strong>6. How long does it take for the refund to reflect in my account?</strong></p>
+                    <p>Eligible refunds will be processed instantly; however, the actual time to reflect in your account may vary based on your bank or payment provider.</p>
+                    <p><strong>7. Will I get a full refund if I cancel my booking?</strong></p>
+                    <p>Yes, a full refund is provided if you cancel 36 hours prior to departure. Otherwise, you will receive a 50% refund.</p>
+                    <p><strong>8. What happens if the train gets cancelled?</strong></p>
+                    <p>If the train is cancelled by Indian Railways, JourneySync will provide a full refund regardless of the timeline.</p>
+                    <p><strong>9. When does the train chart get prepared?</strong></p>
+                    <p>The train chart is generally prepared 4-6 hours before departure, as per Indian Railways rules.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="preferences bg-white p-4 rounded-lg shadow-md mb-4">
+            <img alt="Preferences icon" class="w-5 h-5 mr-4" height="20" src="https://storage.googleapis.com/a1aa/image/UEHeLHYr2py9BqsfRa2G1E1gYsP0S9fMt9UwGfkArOVgVOgQB.jpg" width="20"/>
+            <div>
+                <h2 class="text-base font-bold">Additional Preferences</h2>
+                <label class="text-sm text-gray-600 flex items-center mb-2">
+                    <input class="mr-2" type="checkbox"/>
+                    Window Seat
+                </label>
+                <label class="text-sm text-gray-600 flex items-center mb-2">
+                    <input class="mr-2" type="checkbox"/>
+                    Meal Preference
+                </label>
+                <label class="text-sm text-gray-600 flex items-center">
+                    <input class="mr-2" type="checkbox"/>
+                    Extra Legroom
+                </label>
+            </div>
+        </div>
+        <div class="terms bg-white p-4 rounded-lg shadow-md mb-4">
+            <img alt="Terms icon" class="w-5 h-5 mr-4" height="20" src="https://storage.googleapis.com/a1aa/image/8wPp4U3nvKIjGR4etHxPfQ1fBfdSUC5elrM36BkOmgQeW5ACF.jpg" width="20"/>
+            <div>
+                <h2 class="text-base font-bold">Terms & Conditions</h2>
+                <p class="text-sm text-gray-600">By proceeding, I agree that I have read and understood the Terms & Conditions, Privacy Policy and Travel Guidelines of my destination state.</p>
+            </div>
+        </div>
+        <div class="amount bg-white p-4 rounded-lg shadow-md mb-4">
+            <img alt="Amount icon" class="w-5 h-5 mr-4" height="20" src="https://storage.googleapis.com/a1aa/image/V7u2Lad6ecSweU0A6hd6nfxaeyagvQ1IcPdRIONbQfvhrcAhC.jpg" width="20"/>
+            <div>
+                <h2 class="text-base font-bold">Amount to be Paid</h2>
+                <p class="text-sm text-gray-600">Amount: ₹ 1050 / person</p>
+                <p class="text-sm text-gray-600">Final amount will be calculated at payment</p>
+                <button class="proceed bg-green-600 text-white p-2 rounded mt-2 w-full" onclick="proceed()">PROCEED</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer bg-gray-800 text-white p-10 flex flex-wrap justify-between">
+        <div class="left flex-1 pl-5">
+            <p class="mb-4">JourneySync: A new way to book bus and train tickets. Coming Soon !!</p>
+            <div class="social-icons flex mt-4">
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-linkedin"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+        <div class="right flex-1 pr-5 flex justify-end items-center">
+            <a class="mr-4 text-white text-lg" href="#">Info</a>
+            <a class="text-white text-lg" href="#">About</a>
+        </div>
+    </div>
+    <div class="modal fixed z-10 inset-0 overflow-y-auto hidden" id="stationModal">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 mx-auto mt-20 max-w-md">
+            <span class="close text-gray-600 text-2xl cursor-pointer float-right" onclick="closeModal('stationModal')">×</span>
+            <h2 class="text-lg font-bold mb-4">Change Boarding Station</h2>
+            <p class="text-sm text-gray-600 mb-4">Select a new boarding station:</p>
+            <select class="w-full p-2 border border-gray-300 rounded mb-4">
+                <option value="station1">Station 1</option>
+                <option value="station2">Station 2</option>
+                <option value="station3">Station 3</option>
+            </select>
+            <button class="bg-blue-600 text-white p-2 rounded w-full" onclick="closeModal('stationModal')">Confirm</button>
+        </div>
+    </div>
+    <div class="modal fixed z-10 inset-0 overflow-y-auto hidden" id="emailModal">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 mx-auto mt-20 max-w-md">
+            <span class="close text-gray-600 text-2xl cursor-pointer float-right" onclick="closeModal('emailModal')">×</span>
+            <h2 class="text-lg font-bold mb-4">Enter Your Email</h2>
+            <input class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Email" type="email"/>
+            <button class="bg-blue-600 text-white p-2 rounded w-full" onclick="closeModal('emailModal')">Submit</button>
+        </div>
+    </div>
+    <div class="modal fixed z-10 inset-0 overflow-y-auto hidden" id="forgotUsernameModal">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 mx-auto mt-20 max-w-md">
+            <span class="close text-gray-600 text-2xl cursor-pointer float-right" onclick="closeModal('forgotUsernameModal')">×</span>
+            <h2 class="text-lg font-bold mb-4">Enter Your Email and Date of Birth</h2>
+            <input class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Email" type="email"/>
+            <input class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Date of Birth" type="date"/>
+            <button class="bg-blue-600 text-white p-2 rounded w-full" onclick="closeModal('forgotUsernameModal')">Submit</button>
+        </div>
+    </div>
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function addPassenger() {
+            const passengerList = document.getElementById('passenger-list');
+            const newPassenger = document.createElement('div');
+            newPassenger.className = 'add-passenger flex items-center justify-between mb-2';
+            newPassenger.innerHTML = 
+                '<input type="text" placeholder="Passenger Name" class="w-1/3 p-2 border border-gray-300 rounded mr-2">' +
+                '<input type="text" placeholder="Age" class="w-1/3 p-2 border border-gray-300 rounded mr-2">' +
+                '<input type="text" placeholder="Gender" class="w-1/3 p-2 border border-gray-300 rounded">';
+            passengerList.appendChild(newPassenger);
+        }
+
+        function proceed() {
+            
+            window.location.href = "payment.html";
+        }
+
+        document.getElementById('profile-icon').addEventListener('click', function() {
+            const profileMenu = document.getElementById('profile-menu');
+            profileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

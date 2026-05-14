@@ -1,0 +1,382 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+  JourneySync Help
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+        }
+        .header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .header .left-icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .right-links {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .header .right-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #000;
+        }
+        .header .right-links .user-icon {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        .dropdown .dropbtn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #000;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 51, 102, 0.3);
+            padding: 40px 20px;
+            color: white;
+        }
+        .main-content .help-section {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .main-content .help-section .help-text {
+            max-width: 600px;
+        }
+        .main-content .help-section .help-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .sidebar {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #003366;
+        }
+        .sidebar .faq-section {
+            margin-bottom: 20px;
+        }
+        .sidebar .faq-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .sidebar .faq-section .faq-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: -10px;
+        }
+        .sidebar .faq-section .faq-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            text-align: center;
+        }
+        .sidebar .faq-section .faq-links a img {
+            display: block;
+            margin: 0 auto 5px;
+            height: 40px;
+        }
+        .sidebar .other-topics {
+            margin-top: 20px;
+        }
+        .sidebar .other-topics h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .sidebar .other-topics .topic {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .sidebar .other-topics .topic i {
+            margin-right: 10px;
+            color: #e53935;
+        }
+        .footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: auto;
+        }
+        .footer .left p {
+            text-align: left;
+        }
+        .social-icons {
+            display: flex;
+            margin-top: 4px;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .content {
+            flex: 1;
+            background-color: #d83535;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 36px;
+        }
+        .content img {
+            margin-bottom: 10px;
+        }
+        .content p {
+            font-size: 18px;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .main-content .help-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .main-content .help-section .help-text {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .sidebar {
+                margin: 0 0 20px 0;
+            }
+        }
+  </style>
+ </head>
+ <body>
+  <div class="header">
+   <div class="left-icons">
+    <a href="frontpage.html">
+        <img alt="Bus icon" height="40" src="https://i.postimg.cc/pT9R5jHm/Screenshot-2025-01-21-145608.png" width="40"/>
+    </a>
+    <a href="frontpage.html">
+        <img alt="Train icon" height="40" src="https://i.postimg.cc/bJK8xvy3/Screenshot-2025-01-21-145543.png" width="40"/>
+       
+       </a>
+   </div>
+   <div class="right-links">
+    <a href="home.html">
+     Contact
+    </a>
+    <a href="help.html">
+     Help
+    </a>
+    <div class="dropdown">
+     <button class="dropbtn">
+      <img alt="User icon" class="user-icon" height="40" onclick="toggleProfileMenu()" src="https://i.postimg.cc/hjRYDgxT/user-removebg-preview.png"/>
+     </button>
+     <div class="dropdown-content">
+      <a href="#">
+       Cancel Ticket
+      </a>
+      <a href="#">
+       Change Travel Date
+      </a>
+      <a href="#">
+       Show My Ticket
+      </a>
+      <a href="sms.html">
+       Email/SMS
+      </a>
+      <a href="myprofile.html">
+       My Profile
+      </a>
+      <a href="mytrips.html">
+       My Trips
+      </a>
+      <a href="cards.html">
+       Cards
+      </a>
+      <a href="cards.html">
+       Wallet
+      </a>
+      <a href="home.html">
+       Sign Out
+      </a>
+      <a href="home.html">
+       Sign Out from All Devices
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="main-content" style="background-color: rgba(0, 51, 102, 0.3);">
+   <div class="help-section">
+    <div class="sidebar">
+     <h2 style="color: #003366;">
+      JourneySync : Buddy
+     </h2>
+     <div class="faq-section">
+      <h3>
+       FAQs (Select a Help Topic)
+      </h3>
+      <div class="faq-links" style="margin-top: -10px;">
+       <a href="frontpage.html">
+        <img alt="Bus Tickets icon" src="https://i.postimg.cc/pT9R5jHm/Screenshot-2025-01-21-145608.png"/>
+        <br/>
+        Bus Tickets
+       </a>
+       <a href="frontpage.html">
+        <img alt="Train Tickets icon" src="https://i.postimg.cc/w38yH8Lc/Screenshot-54.png"/>
+        <br/>
+        Train Tickets
+       </a>
+      </div>
+     </div>
+    </div>
+    <div class="help-image">
+     <img alt="Customer support illustration" src="https://i.postimg.cc/sXG5RJbz/Screenshot-55.png "/>
+    </div>
+   </div>
+  </div>
+  <footer>
+   <div class="footer bg-gray-800 text-white p-10 flex flex-wrap margin-bottom justify-between">
+    <div class="left flex-1 pl-5">
+     <p class="mb-4">
+      JourneySync: A new way to book bus and train tickets. Coming Soon !!
+     </p>
+     <div class="social-icons flex mt-4">
+      <a class="mr-4 text-2xl" href="#">
+       <i class="fab fa-twitter">
+       </i>
+      </a>
+      <a class="mr-4 text-2xl" href="#">
+       <i class="fab fa-instagram">
+       </i>
+      </a>
+      <a class="mr-4 text-2xl" href="#">
+       <i class="fab fa-linkedin">
+       </i>
+      </a>
+      <a class="mr-4 text-2xl" href="#">
+       <i class="fab fa-facebook">
+       </i>
+      </a>
+     </div>
+    </div>
+    <div class="right flex-1 flex flex-col items-end margin-bottom mt-8 md:mt-0">
+     <div class="links flex flex-wrap mb-4">
+      <a class="mr-4 text-lg" href="#" style="color: white;">
+       About us
+      </a>
+      <a class="mr-4 text-lg" href="#" style="color: white;">
+       Info
+      </a>
+     </div>
+     <p>
+      JourneySync India
+     </p>
+    </div>
+   </div>
+  </footer>
+ </body>
+</html>

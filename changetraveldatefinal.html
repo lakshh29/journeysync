@@ -1,0 +1,356 @@
+<html>
+ <head>
+  <title>
+   Change Travel Date
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .profile {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            border-radius: 4px;
+            z-index: 100;
+            width: 180px;
+        }
+
+        .profile:hover .profile-menu {
+            display: block;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .profile-menu a:hover {
+            background: #f0f0f0;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+        }
+        .navbar .icon {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .icon img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .navbar .icon .active {
+            padding: 5px;
+        }
+        .navbar .icon .inactive {
+            padding: 5px;
+        }
+        .navbar .right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .right a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        .navbar .right .profile img {
+            width: 40px;
+            height: 40px;
+        }
+        .search-section {
+            margin: 20px 0;
+        }
+        .search-section input[type="text"], .search-section input[type="tel"] {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .search-section select {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .search-section button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        .how-it-works {
+            margin: 40px 0;
+        }
+        .how-it-works h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .step {
+            width: 30%;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .step img {
+            width: 100px;
+            height: 100px;
+        }
+        .step h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .step p {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer.bg-gray-800 {
+            background-color: #2d3748;
+        }
+        .footer.text-white {
+            color: white;
+        }
+        .footer.p-10 {
+            padding: 10px;
+        }
+        .footer.flex {
+            display: flex;
+        }
+        .footer.flex-wrap {
+            flex-wrap: wrap;
+        }
+        .footer.justify-between {
+            justify-content: space-between;
+        }
+        .footer .left {
+            flex: 1;
+            padding-left: 5px;
+        }
+        .footer .left p.mb-4 {
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .footer .social-icons {
+            display: flex;
+            margin-top: 4px;
+        }
+        .footer .social-icons a {
+            margin-right: 4px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .footer .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 8px;
+        }
+        .footer .right .links {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+        .footer .right .links a {
+            margin-right: 4px;
+            font-size: 1rem;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .step {
+                width: 100%;
+            }
+            .search-section input[type="text"], .search-section input[type="tel"] {
+                width: 100%;
+            }
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer .right {
+                align-items: center;
+            }
+            .footer .links {
+                justify-content: center;
+            }
+        }
+  </style>
+ </head>
+ <body>
+  <div class="navbar">
+   <div class="icon">
+    <div class="active">
+<a href="busfinal.html">
+     <img alt="Bus icon" height="40" src="https://i.postimg.cc/FHyCZCRL/Screenshot-2025-01-21-145608.png" width="40"/>
+</a>
+    </div>
+    <div class="inactive">
+<a href="trainfinal.html">
+     <img alt="Train icon" height="40" src="https://i.postimg.cc/Sj0VLcbd/Screenshot-2025-01-21-145543.png" width="40"/>
+</a>  
+    </div>
+   </div>
+   <div class="right">
+    <a href="home.html">
+     Contact
+    </a>
+    <a href="#">
+     Help
+    </a>
+    <div class="profile">
+     <img alt="Profile icon" height="40" src="https://i.postimg.cc/MpVNLKsX/user-removebg-preview.png" width="40"/>
+<div class="profile-menu" id="profile-menu">
+                <a href="sms.html">E-mail/SMS</a>
+                <a href="myprofile.html">My profile</a>
+                <a href="cards.html">Cards</a>
+                <a href="wallet.html">Wallet</a>
+                <a href="cancelticket.html">Cancel Ticket</a>
+                <a href="mytrips.html">My Trip</a>
+                <a href="changetraveldatefinal.html">Change travel date</a>
+                <a href="print.html">Show Ticket</a>
+                <a href="home.html">Sign out</a>
+                <a href="home.html">Sign out from all the devices</a>
+                </div>
+    </div>
+   </div>
+  </div>
+  <div class="container">
+   <div class="search-section">
+    <label for="ticket-number">
+     TICKET NUMBER
+    </label>
+    <input id="ticket-number" placeholder="Enter your ticket number" type="text"/>
+    <label for="mobile-number"> MOBILE NUMBER </label>
+    <select id="country-code">
+     <option value="+91">
+      + 91
+     </option>
+    </select>
+    <input id="mobile-number" placeholder="Enter your mobile number" type="tel"/>
+    <button type="button">SEARCH</button>
+   </div>
+   <div class="how-it-works">
+    <h2>
+     How it works?
+    </h2>
+    <div class="steps">
+     <div class="step">
+      <img alt="Magnifying glass over a ticket" height="100" src="https://i.postimg.cc/wBQSG15f/DALL-E-2025-01-23-23-33-00-A-modern-round-illustration-representing-a-search-process-for-a-journe.webp" width="100"/>
+      <h3>
+       Search Ticket:
+      </h3>
+      <p>
+       Enter your ticket number and Email id and search the ticket.
+      </p>
+     </div>
+     <div class="step">
+      <img alt="Calendar with a check mark" height="100" src="https://i.postimg.cc/d3Lp3nbp/DALL-E-2025-01-23-23-33-02-A-modern-round-illustration-representing-a-travel-date-selection-proce.webp" width="100"/>
+      <h3>
+       Choose Travel Date
+      </h3>
+      <p>
+       Verify your ticket and choose a date to change your travel date.
+      </p>
+     </div>
+     <div class="step">
+      <img alt="Ticket with a check mark" height="100" src="https://i.postimg.cc/YSH5R6FL/file-Jxh-Xu-BAfk-ZRFFFtkd-Ti-XKJ.webp" width="100"/>
+      <h3>
+       Confirmation:
+      </h3>
+      <p>
+       Select your bus and confirm date change by paying the difference amount.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer bg-gray-800 text-white p-10 flex flex-wrap justify-between">
+    <div class="left flex-1 pl-5">
+        <p class="mb-4">JourneySync: A new way to book bus and train tickets. Coming Soon !!</p>
+        <div class="social-icons flex mt-4">
+            <a class="mr-4 text-2xl" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="mr-4 text-2xl" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="mr-4 text-2xl" href="#"><i class="fab fa-linkedin"></i></a>
+            <a class="mr-4 text-2xl" href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </div>
+    <div class="right flex-1 flex flex-col items-end mt-8 md:mt-0">
+        <div class="links flex flex-wrap mb-4">
+            <a class="mr-4 text-lg" href="#" style="color: white;">About us</a>
+            <a class="mr-4 text-lg" href="#" style="color: white;">Info</a>
+        </div>
+        <p>JourneySync India</p>
+    </div>
+</div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const profile = document.querySelector(".profile");
+    const profileMenu = document.getElementById("profile-menu");
+
+    profile.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevents immediate closing
+        profileMenu.style.display = (profileMenu.style.display === "block") ? "none" : "block";
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!profile.contains(event.target)) {
+            profileMenu.style.display = "none";
+        }
+    });
+});
+    </script>
+    
+ </body>
+</html>

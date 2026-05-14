@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus Booking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+        }
+        .header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .header .left-icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .right-links {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .header .right-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #000;
+        }
+        .header .right-links .user-icon {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .profile-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            width: 200px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+        .profile-menu a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .profile-menu a:hover {
+            background-color: #f8f9fa;
+        }
+        .background {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        .background img {
+            width: 100%;
+            height: auto;
+        }
+        .background .content {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .background .content .buttons {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .background .content .buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .background .content .buttons button:nth-child(2),
+        .background .content .buttons button:nth-child(3) {
+            background-color: #f8f9fa;
+            color: #000;
+        }
+        .background .content .search-box {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .background .content .search-box input,
+        .background .content .search-box button {
+            padding: 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .background .content .search-box button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .background .content .search-box input[type="date"] {
+            padding: 9px;
+        }
+        .section {
+            padding: 20px 20px;
+            text-align: center;
+        }
+        .section h2 {
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .section .faq-content {
+            display: none;
+            text-align: left;
+            margin-top: 10px;
+        }
+        .offers {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .offer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            width:  250px;
+        }
+        .offer img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        #chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+#chatbot-button img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#chatbot-button:hover {
+    transform: scale(1.1);
+}
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer.bg-gray-800 {
+            background-color: #2d3748;
+        }
+        .footer.text-white {
+            color: white;
+        }
+        .footer.p-10 {
+            padding: 10px;
+        }
+        .footer.flex {
+            display: flex;
+        }
+        .footer.flex-wrap {
+            flex-wrap: wrap;
+        }
+        .footer.justify-between {
+            justify-content: space-between;
+        }
+        .footer .left {
+            flex: 1;
+            padding-left: 5px;
+        }
+        .footer .left p.mb-4 {
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .footer .social-icons {
+            display: flex;
+            margin-top: 4px;
+        }
+        .footer .social-icons a {
+            margin-right: 4px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .footer .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 8px;
+        }
+        .footer .right .links {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+        .footer .right .links a {
+            margin-right: 4px;
+            font-size: 1rem;
+            color: white;
+        }
+    </style>
+    <script>
+        
+        function toggleProfileMenu() {
+            var profileMenu = document.getElementById("profile-menu");
+            if (profileMenu.style.display === "none" || profileMenu.style.display === "") {
+                profileMenu.style.display = "block";
+            } else {
+                profileMenu.style.display = "none";
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".search-box button").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Get input values
+                let from = document.getElementById("from").value;
+                let to = document.getElementById("to").value;
+                let date = document.getElementById("date").value;
+
+                // Store data in localStorage
+                localStorage.setItem("from", from);
+                localStorage.setItem("to", to);
+                localStorage.setItem("date", date);
+
+                // Redirect to busbook.html
+                window.location.href = "busbook.html";
+            });
+    });
+
+        document.addEventListener('click', function(event) {
+            var profileMenu = document.getElementById("profile-menu");
+            var userIcon = document.querySelector('.user-icon');
+            if (!userIcon.contains(event.target) && !profileMenu.contains(event.target)) {
+                profileMenu.style.display = "none";
+            }
+        });
+
+        function handleButtonClick(buttonText) {
+            alert(buttonText + " button clicked!");
+        }
+
+        function handleOfferClick(offerText) {
+            alert(offerText + " clicked!");
+        }
+        document.getElementById("chatbot-button").addEventListener("click", function() {
+            window.location.href = "chatbot.html"; // Change this to your chatbot page
+        });
+        
+        
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="left-icons">
+           <a href="busfinal.html">
+                <img alt="Bus icon" height="40" src="https://i.postimg.cc/pT9R5jHm/Screenshot-2025-01-21-145608.png" width="40"/>
+            </a>
+  <a href="trainfinal.html">
+ <img alt="Train icon" height="40" src="https://i.postimg.cc/bJK8xvy3/Screenshot-2025-01-21-145543.png" width="40"/>
+
+</a>
+            
+        </div>
+        <div class="right-links">
+            <a href="home.html">Contact</a>
+            <a href="help.html">Help</a>
+            <img alt="User  icon" class="user-icon" height="40" onclick="toggleProfileMenu()" src="https://i.postimg.cc/hjRYDgxT/user-removebg-preview.png" width="40"/>
+            <div class="profile-menu" id="profile-menu">
+                <a href="sms.html">E-mail/SMS</a>
+                <a href="myprofile.html">My profile</a>
+                <a href="cards.html">Cards</a>
+                <a href="wallet.html">Wallet</a>
+                <a href="cancelticket.html">Cancel Ticket</a>
+                <a href="mytrips.html">My Trip</a>
+                <a href="changetraveldatefinal.html">Change travel date</a>
+                <a href="print.html">Show Ticket</a>
+                <a href="home.html">Sign out</a>
+                <a href="home.html">Sign out from all the devices</a>
+            </div>
+        </div>
+    </div>
+    <div class="background">
+        <img alt="Scenic background with a bus on the road" height="600" src="https://i.postimg.cc/W1NqCm0G/DALL-E-2025-01-21-15-20-49-A-scenic-minimalist-illustration-of-a-bus-on-an-open-road-at-sunrise-w.webp" width="1920"/>
+        <div class="content">
+            <div class="buttons">
+                <button onclick="handleButtonClick('Book Bus Ticket')">Book Bus Ticket</button>
+                <button onclick=" handleButtonClick('Check PNR Status')">Check PNR Status</button>
+                <button onclick="handleButtonClick('Live Bus Status')">Live Bus Status</button>
+            </div>
+            <div class="search-box">
+                <div>
+                    <label for="from">From</label>
+                    <input id="from" placeholder="Enter source" type="text"/>
+                </div>
+                <div>
+                    <label for="to">To</label>
+                    <input id="to" placeholder="Enter destination" type="text"/>
+                </div>
+                <div>
+                    <label for="date">Date</label>
+                    <input id="date" placeholder="dd-mm-yyyy" type="date"/>
+                </div>
+                <button type="submit">Search</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h2>Trending Offers</h2>
+        <div class="offers">
+            <div class="offer" onclick="handleOfferClick('Weekend Deals')">
+                <img alt="Offer 1" height="200" src="https://i.postimg.cc/brvZDCvb/DALL-E-2025-01-24-01-57-10-An-advertisement-for-weekend-deals-on-a-bus-ticket-booking-app-called.webp" width="300"/>
+                <p>Weekend Deals</p>
+            </div>
+            <div class="offer" onclick="handleOfferClick('Lucky Draw')">
+                <img alt="Offer 2" height="200" src="https://i.postimg.cc/TPXh8p9b/file-E4-XLBa-Uc-H46t-EAGgi3-N3z-J.webp" width="300"/>
+                <p>Lucky Draw</p>
+            </div>
+            <div class="offer" onclick="handleOfferClick('Refer a Friend, Get a Free Ride')">
+                <img alt="Offer 3" height="200" src="https://i.postimg.cc/0j32VQjb/DALL-E-2025-01-24-01-29-38-A-vibrant-promotional-graphic-for-a-Refer-a-Friend-offer-in-a-bus-tic.webp" width="300"/>
+                <p>Refer a Friend, Get a Free Ride</p>
+            </div>
+            <div class="offer" onclick="handleOfferClick('Group Discounts')">
+                <img alt="Offer 4" height="200" src="https://i.postimg.cc/fy0hTvWR/DALL-E-2025-01-24-01-33-36-An-advertisement-for-group-discounts-on-a-bus-ticket-booking-app-called.webp" width="300"/>
+                <p>Group Discounts</p>
+            </div>
+            <div class="offer" onclick="handleOfferClick('Early Bird')">
+                <img alt="Offer 5" height="200" src="https://i.postimg.cc/CLBKzjrD/DALL-E-2025-01-24-01-30-25-A-lively-and-professional-promotional-graphic-for-an-Early-Bird-Offer.webp" width="300"/>
+                <p>Early Bird</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+      <h2><a href="faqsfinal.html" style="text-decoration: none; color: inherit;">FAQs</a></h2>
+        <div class="faq-content" id="faq-content">
+            <p>Frequently asked questions...</p>
+        </div>
+    </div>
+    <div class="section">
+        <h2>Why Choose JourneySync for Bus Booking?</h2>
+        <p>JourneySync simplifies your bus travel with its user-friendly interface, allowing you to easily search, compare, and book tickets in moments. Our extensive network connects you to a wide range of bus operators and travel options, while our commitment to customer satisfaction ensures 24/7 support, flexible booking policies, and exclusive deals. Travel with peace of mind knowing you're booking with verified operators, receiving real-time updates, and enjoying transparent pricing with no hidden costs. Download JourneySync today and experience the future of bus travel.</p>
+    </div>
+    <div class="footer bg-gray-800 text-white p-10 flex flex-wrap justify-between">
+        <div class="left flex-1 pl-5">
+            <p class="mb-4">JourneySync: A new way to book bus and train tickets. Coming Soon !!</p>
+            <div class="social-icons flex mt-4">
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-linkedin"></i></a>
+                <a class="mr-4 text-2xl" href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+        <div class="right flex-1 flex flex-col items-end mt-8 md:mt-0">
+            <div class="links flex flex-wrap mb-4">
+                <a class="mr-4 text-lg" href="#" style="color: white;">About us</a>
+                <a class="mr-4 text-lg" href="#" style="color: white;">Info</a>
+            </div>
+            <p>JourneySync India</p>
+        </div>
+    </div>
+    <button id="chatbot-button">
+        <img src="C:\Journeysync\chatbot-backend\chatbot.png.webp" alt="Chatbot Icon">
+    </button>
+</body>
+</html>

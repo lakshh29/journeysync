@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>JourneySync Help</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+        }
+        .header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .header .left-icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .right-links {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .header .right-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #000;
+        }
+        .header .right-links .user-icon {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            background: none; /* Remove background */
+            border: none; /* Remove border */
+            padding: 0; /* Remove padding */
+            cursor: pointer; /* Ensure the icon is clickable */
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+        }
+        .content {
+            width: 100%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .faq-section {
+            margin-top: 20px;
+        }
+        .faq {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+        .faq:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            font-size: 1.2rem;
+            color: #444;
+            cursor: pointer;
+            margin: 0;
+            padding: 10px 0;
+        }
+        .faq-answer {
+            font-size: 1rem;
+            color: #666;
+            margin: 10px 0 0;
+            display: none;
+        }
+        .faq-question:hover {
+            color: #007BFF;
+        }
+        .support-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .support-section img {
+            max-width: 70%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .support-section h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 10px 0;
+        }
+        .support-section p {
+            font-size: 18px;
+            color: #666;
+        }
+        .footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 15px; /* Reduced padding */
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+        .footer .left {
+            flex: 1;
+            text-align: left;
+            padding-left: 10px; /* Reduced padding */
+        }
+        .footer .right {
+            flex: 1;
+            text-align: right;
+            padding-right: 10px; /* Reduced padding */
+        }
+        .footer .social-icons {
+            display: flex;
+            margin-top: 5px; /* Reduced margin */
+        }
+        .social-icons a {
+            margin: 0 3px; /* Reduced spacing between icons */
+            font-size: 1.2rem; /* Reduced font size */
+            color: white; /* Set icon color to white */
+        }
+        .footer .links a {
+            margin-left: 10px; /* Reduced spacing */
+            text-decoration: none;
+            color: white;
+            font-size: 14px; /* Reduced font size */
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .content {
+                width: 60%;
+                margin-right: 20px;
+            }
+            .support-section {
+                width: 35%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left-icons">
+            <img alt="Bus icon" src="https://i.postimg.cc/pT9R5jHm/Screenshot-2025-01-21-145608.png" />
+            <img alt="Train icon" src="https://i.postimg.cc/bJK8xvy3/Screenshot-2025-01-21-145543.png" />
+        </div>
+        <div class="right-links">
+            <a href="#">Contact</a>
+            <a href="#">Help</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img alt="User  icon" class="user-icon" height="40" onclick="toggleProfileMenu()" src="https://i.postimg.cc/hjRYDgxT/user-removebg-preview.png" />
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Cancel Ticket</a>
+                    <a href="#">Change Travel Date</a>
+                    <a href="#">Show My Ticket</a>
+                    <a href="#">Email/SMS</a>
+                    <a href="#">My Profile</a>
+                    <a href="#">My Trips</a>
+                    <a href="#">Cards</a>
+                    <a href="#">Wallet</a>
+                    <a href="#">Sign Out</a>
+                    <a href="#">Sign Out from All Devices</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="faq-section">
+                <h1>FAQs</h1>
+                <div class="faq">
+                    <h2 class="faq-question">My Wallet shows incorrect balance. What do I do?</h2>
+                    <p class="faq-answer">Check your transaction history to identify discrepancies. If the issue persists, contact customer support for assistance.</p>
+                </div>
+                <div class="faq">
+                    <h2 class="faq-question">I want to know the terms and conditions regarding the usage of JourneySync Wallet.</h2>
+                    <p class="faq-answer">You can find the terms and conditions in the app under the "Settings > Wallet Terms" section or on our official website.</p>
+                </div>
+            </div>
+        </div>
+        <div class="support-section">
+            <img alt="Customer support illustration" src="https://i.postimg.cc/sXG5RJbz/Screenshot-55.png" />
+            <h1>JourneySync</h1>
+            <p>24/7 Customer Support</p>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+    <footer>
+        <div class="footer">
+            <div class="left">
+                <p>JourneySync: A new way to book bus and train tickets. Coming Soon !!</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="links">
+                    <a href="#">About us</a>
+                    <a href="#">Info</a>
+                </div>
+                <p>JourneySync India</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

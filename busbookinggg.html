@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bus Ticket Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script>
+        function showDiscountBuses() {
+            document.getElementById('discount-buses').classList.remove('hidden');
+        }
+
+        function openPopup() {
+            document.getElementById('popup').classList.remove('hidden');
+        }
+
+        function closePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const seats = document.querySelectorAll('.seat');
+            const amountElement = document.querySelector('.price');
+            const seatNumbersElement = document.querySelector('.seat-numbers');
+            const seatPrice = 450;
+
+            seats.forEach(seat => {
+                seat.addEventListener('click', function() {
+                    this.classList.toggle('bg-green-300');
+                    updateAmountAndSeats();
+                });
+            });
+
+            function updateAmountAndSeats() {
+                const selectedSeats = document.querySelectorAll('.seat.bg-green-300');
+                const totalAmount = selectedSeats.length * seatPrice;
+                amountElement.textContent = `INR ${totalAmount.toFixed(2)}`;
+
+                const seatNumbers = Array.from(selectedSeats).map(seat => seat.textContent).join(', ');
+                seatNumbersElement.textContent = seatNumbers || 'None';
+            }
+
+            // Close popup if clicking outside of it
+            document.addEventListener('click', function(event) {
+                const popup = document.getElementById('popup');
+                if (!popup.contains(event.target) && !event.target.closest('.open-popup')) {
+                    closePopup();
+                }
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="text-sm text-gray-500 mb-2">
+            Bus Ticket &gt; Jaipur To Delhi Bus
+        </div>
+        <h1 class="text-2xl font-bold mb-4">
+            Jaipur to Delhi Bus
+        </h1>
+        <div class="flex items-center mb-4">
+            <div class="flex items-center space-x-2">
+                <span class="font-semibold">Jaipur (Rajasthan)</span>
+                <i class="fas fa-arrow-right"></i>
+                <span class="font-semibold">Delhi</span>
+                <span class="font-semibold">25 Jan</span>
+                <span class="font-semibold">Sat</span>
+            </div>
+            <button class="ml-4 px-4 py-2 bg-gray-200 text-gray-700 rounded">Modify</button>
+        </div>
+        <div class="flex space-x-4 mb-4">
+            <div class="w-1/4">
+                <h2 class="font-semibold mb-2">FILTERS</h2>
+                <div class="mb-4">
+                    <h3 class="font-semibold mb-2">Live Tracking (86)</h3>
+                    <h3 class="font-semibold mb-2">Primo Bus (9)</h3>
+                </div>
+                <div class="mb-4">
+                    <h3 class="font-semibold mb-2">DEPARTURE TIME</h3>
+                    <div class="space-y-2">
+                        <div>
+                            <input id="before6am" type="checkbox"/>
+                            <label class="ml-2" for="before6am">Before 6 am (64)</label>
+                        </div>
+                        <div>
+                            <input id="6amto12pm" type="checkbox"/>
+                            <label class="ml-2" for="6amto12pm">6 am to 12 pm (37)</label>
+                        </div>
+                        <div>
+                            <input id="12pmto6pm" type="checkbox"/>
+                            <label class="ml-2" for="12pmto6pm">12 pm to 6 pm (42)</label>
+                        </div>
+                        <div>
+                            <input id="after6pm" type="checkbox"/>
+                            <label class="ml-2" for="after6pm">After 6 pm (74)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h3 class="font-semibold mb-2">BUS TYPES</h3>
+                    <div class="space-y-2">
+                        <div>
+                            <input id="seater" type="checkbox"/>
+                            <label class="ml-2" for="seater">SEATER (160)</label>
+                        </div>
+                        <div>
+                            <input id="sleeper" type="checkbox"/>
+                            <label class="ml-2" for="sleeper">SLEEPER (158)</label>
+                        </div>
+                        <div>
+                            <input id="ac" type="checkbox"/>
+                            <label class="ml-2" for="ac">AC (153)</label>
+                        </div>
+                        <div>
+                            <input id="nonac" type="checkbox"/>
+                            <label class="ml-2" for="nonac">NONAC (64)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h3 class="font-semibold mb-2">SEAT AVAILABILITY</h3>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f9f9f9;
+                            padding: 20px;
+                        }
+                        .filter-section {
+                            margin-bottom: 20px;
+                        }
+                        h4 {
+                            font-size: 14px;
+                            color: #333;
+                            margin-bottom: 8px;
+                            text-transform: uppercase;
+                        }
+                        label {
+                            display: block;
+                            font-size: 14px;
+                            color: #555;
+                            margin-bottom: 5px;
+                        }
+                        input[type="text"] {
+                            width: 100%;
+                            padding: 8px;
+                            border: 1px solid #ddd;
+                            border-radius: 5px;
+                            font-size: 14px;
+                        }
+                        .amenities {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                        }
+                        .amenities span {
+                            background: #f1f1f1;
+                            padding: 5px 10px;
+                            border-radius: 5px;
+                            font-size: 14px;
+                            display: inline-block;
+                        }
+                    </style>
+                </div>
+                <div class="filter-container">
+                    <div class="filter-section">
+                        <label><input type="checkbox"> Single Seats (46)</label>
+                    </div>
+                    <div class="filter-section">
+                        <h4>ARRIVAL TIME</h4>
+                        <label><input type="checkbox"> 🌅 Before 6 am (64)</label>
+                        <label><input type="checkbox"> ☀ 6 am to 12 pm (6)</label>
+                        <label><input type="checkbox" disabled> 🌤 12 pm to 6 pm (0)</label>
+                        <label><input type="checkbox"> 🌙 After 6 pm (13)</label>
+                    </div>
+                    <div class="filter-section">
+                        <h4>BOARDING POINT</h4>
+                        <input type="text" placeholder="🔍 BOARDING POINT">
+                    </div>
+                    <div class="filter-section">
+                        <h4>DROPPING POINT</h4>
+                        <input type="text" placeholder="🔍 DROPPING POINT">
+                    </div>
+                    <div class="filter-section">
+                        <h4>OPERATOR</h4>
+                        <input type="text" placeholder="🔍 OPERATOR">
+                    </div>
+                    <div class="filter-section">
+                        <h4>RTC BUS TYPE</h4>
+                        <label><input type="checkbox"> A/C SLEEPER (3)</label>
+                        <label><input type="checkbox"> EXPRESS (11)</label>
+                    </div>
+                    <div class="filter-section">
+                        <h4>AMENITIES</h4>
+                        <div class="amenities">
+                            <span>💧 Water Bottle (33)</span>
+                            <span>🛏 Bed Sheet (22)</span>
+                            <span>🔌 Charging Point (53)</span>
+                            <span>🛏 Blankets (24)</span>
+                            <span>🚻 Toilet (7)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-3/4">
+                <div class="flex space-x-4 mb-4">
+                    <img alt="Advertisement for 10% off on return journey" class="w-1/5 cursor-pointer" height="100" onclick="showDiscountBuses()" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="100"/>
+                    <img alt="Primo - Best in class bus travel" class="w-1/5" height="100" src="https://i.postimg.cc/CLpjDm2j/2.webp" width="100"/>
+                    <img alt="Free bus change up to 1 hour before departure" class="w-1/5" height="100" src="https://i.postimg.cc/139w74sX/3.webp" width="100"/>
+                    <img alt="Exclusive deals for women" class="w-1/5" height="100" src="https://i.postimg.cc/3wNp76yH/4.webp" width="100"/>
+                    <img alt="Get discount on return trip" class="w-1/5" height="100" src="https://i.postimg.cc/B61KPKcY/5.webp" width="100"/>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-semibold">217 Buses found</span>
+                    <div class="flex space-x-4">
+                        <span class="font-semibold">SORT BY:</span>
+                        <span>Departure</span>
+                        <span>Duration</span>
+                        <span>Arrival</span>
+                        <span>Ratings</span>
+                        <span>Fare</span>
+                        <span>Seats Available</span>
+                    </div>
+                </div>
+                <!-- Additional Dummy Data for Buses -->
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Uttar Pradesh Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Goldlines Super Deluxe</h3>
+                                <p>Use Code <span class="font-semibold">MAHA10</span> to Get Upto ₹150 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">30 Buses</p>
+                            <p>From <span class="font-semibold">INR 350</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Uttarakhand Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Rinku Travels</h3>
+                                <p>Use Code <span class="font-semibold">ABGF01</span> to Get Upto ₹200 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">25 Buses</p>
+                            <p>From <span class="font-semibold">INR 400</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Delhi State Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Mahalakshmi Travels</h3>
+                                <p>Use Code <span class="font-semibold">GHIHYT67</span> to Get Upto ₹180 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">40 Buses</p>
+                            <p>From <span class="font-semibold">INR 320</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Haryana State Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Shakti Travels</h3>
+                                <p>Use Code <span class="font-semibold">UP10</span> to Get Upto ₹150 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">50 Buses</p>
+                            <p>From <span class="font-semibold">INR 280</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Gujarat State Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Vikas Travels </h3>
+                                <p>Use Code <span class="font-semibold">ARAT20</span> to Get Upto ₹220 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">35 Buses</p>
+                            <p>From <span class="font-semibold">INR 360</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Punjab State Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Punajbi Travels</h3>
+                                <p>Use Code <span class="font-semibold">PUNJABI15</span> to Get Upto ₹190 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">45 Buses</p>
+                            <p>From <span class="font-semibold">INR 300</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Tamil Nadu State Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Abhi Travels</h3>
+                                <p>Use Code <span class="font-semibold">YANA25</span> to Get Upto ₹250 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">20 Buses</p>
+                            <p>From <span class="font-semibold">INR 270</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Bihar State Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">Hari Travels</h3>
+                                <p>Use Code <span class="font-semibold">HAR30</span> to Get Upto ₹230 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">15 Buses</p>
+                            <p>From <span class="font-semibold">INR 250</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 mb-4 rounded shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img alt="West Bengal State Transport" class="w-12 h-12" height="50" src="https://i.postimg.cc/4xZQCBbJ/10.webp" width="50"/>
+                            <div>
+                                <h3 class="font-semibold">BV Travels</h3>
+                                <p>Use Code <span class="font-semibold">WB10</span> to Get Upto ₹150 off!</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold">10 Buses</p>
+                            <p>From <span class="font-semibold">INR 220</span></p>
+                            <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded open-popup" onclick="openPopup()">VIEW SEATS</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Additional Dummy Data -->
+            </div>
+        </div>
+        <!-- Popup Modal -->
+        <div class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden" id="popup">
+            <div class="bg-white rounded-lg overflow-hidden w-full md:w-3/4 lg:w-1/2 max-h-[90vh] relative">
+                <div class="flex justify-between items-center p-4 border-b">
+                    <h2 class="text-xl font-semibold">Seat Selection</h2>
+                    <button class="text-gray-500 hover:text-gray-700" onclick="closePopup()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="p-4 overflow-y-auto max-h-[80vh]">
+                    <div class="container mx-auto border-2 border-gray-300 p-5 max-w-4xl bg-white flex flex-col md:flex-row">
+                        <div class="w-full md:w-1/2 p-5">
+                            <h1 class="text-lg font-bold mb-4">Click on an Available seat to proceed with transaction:</h1>
+                            <h2 class="text-md font-bold mb-2">Lower Deck </h2>
+                            <div class="seats flex flex-wrap gap-2 mb-5">
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">1</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">2</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">3</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">4</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">5</div>
+                                <div class="seat pink w-8 h-8 bg-pink-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">6</div>
+                                <div class="seat pink w-8 h-8 bg-pink-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">7</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">8</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">9</div>
+                                <div class="seat pink w-8 h-8 bg-pink-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">10</div>
+                                <div class="seat pink w-8 h-8 bg-pink-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">11</div>
+                                <div class="seat pink w-8 h-8 bg-pink-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">12</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">13</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">14</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">15</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">16</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">17</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">18</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">19</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">20</div>
+                            </div>
+                            <h2 class="text-md font-bold mb-2">Upper Deck </h2>
+                            <div class="seats flex flex-wrap gap-2">
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">1</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">2</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">3</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">4</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">5</div>
+                                <div class="seat pink w-8 h-8 bg-pink-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">6</div>
+                                <div class="seat pink w-8 h-8 bg-pink-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">7</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">8</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">9</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">10</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">11</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">12</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">13</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">14</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">15</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">16</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">17</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">18</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">19</div>
+                                <div class="seat w-8 h-8 bg-gray-300 border border-gray-400 flex items-center justify-center text-xs cursor-pointer">20</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mb-5">
+                            <div>
+                                <h2 class="text-lg font-bold mb-2">Seat Number</h2>
+                                <p class="seat-numbers text-gray-800">None</p>
+                            </div>
+                        
+                            <!-- Added margin-left (ml-10 or px-10 for spacing) -->
+                            <div class="ml-10">
+                                <h2 class="text-lg font-bold mb-2">Amount</h2>
+                                <p class="text-gray-600">Taxes will be calculated during payment</p>
+                            </div>
+                        </div>
+                        
+                        <div class="amount flex justify-between items-center font-bold text-lg mb-5">
+                            <p class="price text-gray-800">INR 0.00</p>
+                        </div>
+                        
+                        
+                        </div>
+                        <div class="button-container text-center">
+                            
+                            <a href="pdetailsbus.html">
+                                <button class="bg-blue-800 text-white py-3 px-6 rounded hover:bg-blue-900">
+                                    PROCEED TO BOOK
+                                </button>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <title>Bus Service</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f8f8;
+            }
+            .container {
+                width: 90%;
+                margin: 0 auto;
+            }
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 0;
+                border-bottom: 1px solid #ddd;
+            }
+            .header div {
+                display: flex;
+                align-items: center;
+            }
+            .header div span {
+                margin: 0 5px;
+            }
+            .header button {
+                padding: 5px 15px;
+                border: 1px solid #ddd;
+                background-color: #fff;
+                cursor: pointer;
+            }
+            .info-boxes {
+                display: flex;
+                justify-content: space-between;
+                margin: 20px 0;
+            }
+            .info-box {
+                background-color: #f0f0f0;
+                padding: 20px;
+                width: 48%;
+            }
+            .info-box h3 {
+                margin: 0 0 10px 0;
+                font-size: 18px;
+                font-weight: 700;
+            }
+            .info-box p {
+                margin: 5px 0;
+                font-size: 14px;
+            }
+            .table-container {
+                background-color: #fff;
+                padding: 20px;
+                border: 1px solid #ddd;
+            }
+            .table-container h3 {
+                margin: 0 0 20px 0;
+                font-size: 18px;
+                font-weight: 700;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #f0f0f0;
+            }
+            td {
+                font-size: 14px;
+            }
+            .view-price {
+                background-color: #32CD32; /* Leaf green color */
+                color: #fff;
+                padding: 5px 10px;
+                text-align: center;
+                cursor: pointer;
+                text-decoration: none;
+                display: inline-block;
+            }
+            @media (max-width: 768px) {
+                .info-boxes {
+                    flex-direction: column;
+                }
+                .info-box {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div>
+                    <span>Jaipur (Rajasthan)</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Delhi</span>
+                    <span>24 Jan</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Fri</span>
+                </div>
+                <button>Modify</button>
+            </div>
+            <div class="info-boxes">
+                <div class="info-box ">
+                    <h3>Jaipur to Delhi Bus Service</h3>
+                    <p>Avg. Bus Duration: 5 hrs 49 mins</p>
+                    <p>Buses depart from: Jaipur</p>
+                    <p>Bus arrives in: Delhi</p>
+                    <p>Daily Bus Services: 313</p>
+                    <p>Cheapest Bus Ticket Price: INR 250.00</p>
+                </div>
+                <div class="info-box">
+                    <h3>Jaipur to Delhi Bus Details</h3>
+                    <p>First Bus: 00:05</p>
+                    <p>Last Bus: 23:59</p>
+                    <p>Bus Companies: 86</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <h3>JAIPUR TO DELHI BUS TIMINGS & FARE</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bus Operator</th>
+                            <th>First Bus</th>
+                            <th>Last Bus</th>
+                            <th>Duration</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NueGo</td>
+                            <td>05:30</td>
+                            <td>23:59</td>
+                            <td>5 hrs 45 mins</td>
+                            <td><a href="#" class="view-price">VIEW PRICE</a></td>
+                        </tr>
+                        <tr>
+                            <td>Vikas Travels Jaipur</td>
+                            <td>13:05</td>
+                            <td>22:45</td>
+                            <td>5 hrs 0 mins</td>
+                            <td><a href="#" class="view-price">VIEW PRICE</a></td>
+                        </tr>
+                        <tr>
+                            <td>Shakti Travels</td>
+                            <td>17:55</td>
+                            <td>00:50</td>
+                            <td>5 hrs 35 mins</td>
+                            <td><a href="#" class="view-price">VIEW PRICE</a></td>
+                        </tr>
+                        <tr>
+                            <td>A One Travel Agency</td>
+                            <td>05:00</td>
+                            <td>23:50</td>
+                            <td>5 hrs 17 mins</td>
+                            <td><a href="#" class="view-price">VIEW PRICE</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

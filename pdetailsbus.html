@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Passenger Details</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color:#154360 ; /* Dark Blue */
+            color: #154360;
+        }
+        .header i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .header h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .promo-banner {
+            background-color: #229954 ; /* Dark Blue */
+            color: #fff;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .promo-banner img {
+            height: 25px;
+        }
+        .promo-banner .close {
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .content {
+            padding: 15px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #154360; /* Lighter Green */
+        }
+        .section-title i {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        .passenger-info {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .passenger-info h2 {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 0 8px 0;
+            color: #154360; /* Lighter Green */
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group .gender {
+            display: flex;
+            align-items: center;
+        }
+        .form-group .gender label {
+            margin-right: 8px;
+        }
+        .form-group .gender input {
+            margin-right: 4px;
+        }
+        .footer {
+            padding: 15px;
+            background-color: #E8F5E9;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 10px;
+            margin: 0 0 8px 0;
+        }
+        .footer .total-amount {
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .footer .proceed-btn {
+            background-color: #4CAF50; /* Lighter Green */
+            color: #fff;
+            padding: 8px 15px;
+            font-size: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .footer .proceed-btn:hover {
+            background-color: #388E3C; /* Darker Green */
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 0 10px;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 15px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .button-link {
+            color: #4CAF50; /* Lighter Green */
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .button-link:hover {
+            color: #388E3C; /* Darker Green */
+        }
+        .section-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .section-content div {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .section-content img {
+            margin-right: 8px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            max-width: 60px;
+            max-height: 60px;
+        }
+        .options {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="container">
+    <div class="header">
+        <i class="fas fa-arrow-left"></i>
+        <h1>Passenger Details</h1>
+    </div>
+    <div class="promo-banner">
+        <div>
+            <img alt="A vibrant scene showcasing a fictional bus company with modern, bright buses and happy passengers" src="https://i.postimg.cc/SNZvfF3L/DALL-E-2025-01-27-16-45-46-A-vibrant-scene-showcasing-a-fictional-bus-company-with-modern-bright.webp"/>
+            <span>A Rising Star on JourneySync</span>
+            <span>On time | Friendly staff | Top rated</span>
+        </div>
+        <div class="close">×</div>
+    </div>
+    <div class="content">
+        <div class="section-title">
+            <i class="fas fa-user-circle"></i>
+            <span>Passenger Information</span>
+        </div>
+        <div class="passenger-info">
+            <h2>Passenger 1  </h2>
+            <div class="form-group">
+                <label for="name1">Name</label>
+                <input id="name1" placeholder="Name" type="text"/>
+            </div>
+            <div class="form-group gender">
+                <label>Gender</label>
+                <input id="male1" name="gender1" type="radio"/>
+                <label for="male1">Male</label>
+                <input id="female1" name="gender1" type="radio"/>
+                <label for="female1">Female</label>
+            </div>
+            <div class="form-group">
+                <label for="age1">Age</label>
+                <input id="age1" placeholder="Age" type="number"/>
+            </div>
+
+            <div class="form-group">
+                <label for="state1">State of Residence *</label>
+                <select id="state1" autocomplete="off">
+                    <option value="" disabled selected>Select your state</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+            </div>
+            
+        </div>
+        <div class="passenger-info">
+            <h2>Passenger 2  </h2>
+            <div class="form-group">
+                <label for="name2">Name</label>
+                <input id="name2" placeholder="Name" type="text"/>
+            </div>
+            <div class="form-group gender">
+                <label>Gender</label>
+                <input id="male2" name="gender2" type="radio"/>
+                <label for="male2">Male</label>
+                <input id="female2" name="gender2" type="radio"/>
+                <label for="female2">Female</label>
+            </div>
+            <div class="form-group">
+                <label for="age2">Age</label>
+                <input id="age2" placeholder="Age" type="number"/>
+            </div>
+            <div class="form-group">
+                <label for="state1">State of Residence *</label>
+                <select id="state1" autocomplete="off">
+                    <option value="" disabled selected>Select your state</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+            </div>
+        </div>
+        <div class="section-title">
+            <i class="fas fa-envelope"></i>
+            <span>Contact Details</span>
+        </div>
+        <div class="info-box">Your ticket will be sent to these details</div>
+        <div class="form-group">
+            <label for="email">Email ID</label>
+            <input id="email" placeholder="Email ID" type="email"/>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <div class="phone-group">
+                <select>
+                    <option value="+91">+91</option>
+                </select>
+                <input id="phone" placeholder="Phone" type="text"/>
+            </div>
+        </div>
+        <div class="section-title">
+            <i class="fas fa-shield-alt"></i>
+            <span>JourneySync Assurance</span>
+        </div>
+        <p>Secure your trip just at <span style="color: #d32f2f;">₹19</span> per passenger</p>
+        <label style="display: block; margin-bottom: 15px;">
+            <input name="assurance" type="radio" value="yes"/>
+            Yes, Protect my trip at <span style="color: #d32f2f;">₹ 38 (2 passengers)</span>, I agree to the
+            <a href="#" styles="">Terms and Conditions</a>
+        </label>
+        <div class="section-content">
+            <div>
+                <img alt="A digital illustration showing a hand holding a bright Indian 500 rupee note" src="https://i.postimg.cc/Y2W4hvdY/DALL-E-2025-01-27-14-31-32-A-digital-illustration-showing-a-hand-holding-a-bright-Indian-500-rupee.webp"/>
+                <div>
+                    <h3 style="font-size: 12px;">Up to ₹ 500 Extra refund</h3>
+                    <p style="font-size: 10px;">In case your bus gets cancelled.</p>
+                </div>
+            </div>
+            <div>
+                <img alt="A digital illustration representing insurance coverage featuring a protective shield and medical symbols" src="https://i.postimg.cc/766q0W1f/DALL-E-2025-01-27-15-08-50-A-digital-illustration-representing-insurance-coverage-featuring-a-pro.webp"/>
+                <div>
+                    <h3 style="font-size: 12px;">Insurance Coverage</h3>
+                    <p style="font-size: 10px; margin-top: 5px;">Up to ₹75,000 on hospitalization & Up to ₹5 Lakh in case of death/PTD/PPD</p>
+                </div>
+            </div>
+        </div>
+        <div class="options">
+            <label style="display: block; margin-top: 15px;">
+                <input name="assurance" type="radio" value="no"/>
+                Don’t add JourneySync Assurance
+            </label>
+        </div>
+        <div class="footer">
+            <div class="contribution">JourneySync Cares: your contribution makes a difference!</div>
+            <div class="donate">
+                <input type="checkbox"/>
+                <span>Donate ₹5 to support responsible tourism initiatives</span>
+                <a class="button-link" id="knowMoreLink">Know more</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>By clicking on proceed, I agree that I have read and understood the <a href="#">TnCs</a> and the <a href="#">Privacy Policy</a></p>
+        
+        <h3>Selected Seats: <span id="selected-seats"></span></h3>
+    <h3>Total Amount: <span id="total-amount"></span></h3>
+    <button onclick="goToPayment()"></button>
+
+        <p>(*Exclusive of Taxes)</p>
+        <button class="proceed-btn" id="proceedBtn">PROCEED TO PAY</button>
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">×</span>
+        <p>The amount received as a donation will be used for charitable causes. JourneySync will donate the collected amount to charitable organizations such as the MakeMyTrip Foundation (a public trust registered with charitable objectives) or similar organizations to help create a social impact.</p>
+        <p>The contributions made will be refunded in case of ticket cancellations.</p>
+        <p>By voluntarily choosing to contribute to this social cause, you acknowledge and agree that by proceeding to donate the money, you do so at your own risk and expressly waive any and all claims, rights of action, and/or remedies (under law or otherwise) that you may have against JourneySync arising out of or in connection with this transaction.</p>
+        <p>By proceeding to donate, you confirm and understand that this donation is not from any foreign source as defined under the Foreign Contribution Regulation Act, 2010.</p>
+        <p>Please note that no certificate under Section 80G of the Income Tax Act, 1961, will be issued for this contribution.</p>
+        <p>For any queries, kindly reach out to the "Help" or "Support" section of the JourneySync app.</p>
+    </div>
+</div>
+<script>
+    document.getElementById('knowMoreLink').onclick = function() {
+        document.getElementById('myModal').style.display = "block";
+    }
+
+    document.getElementById('closeModal').onclick = function() {
+        document.getElementById('myModal').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('myModal')) {
+            document.getElementById('myModal').style.display = "none";
+        }
+    }
+   // Function to get selected seats and amount from the URL
+function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        seats: JSON.parse(decodeURIComponent(params.get("seats") || "[]")), // Retrieve seats
+        amount: params.get("amount") ? decodeURIComponent(params.get("amount")) : "0" // Retrieve amount
+    };
+}
+
+// Display selected seats and amount on the current page
+const { seats, amount } = getQueryParams();
+document.getElementById("selected-seats").textContent = seats.length ? seats.join(", ") : "None";
+document.getElementById("total-amount").textContent = `INR ${amount}.00`;  // Ensure amount is displayed correctly
+
+// Add click event for the proceed button
+function goToPayment() {
+    const params = new URLSearchParams({
+        seats: JSON.stringify(seats),  // Pass seats as a string
+        amount: amount  // Pass the amount
+    });
+
+    window.location.href = `payment.html?${params.toString()}`;  // Redirect to payment page with params
+}
+
+// Trigger the redirect when Proceed button is clicked
+document.getElementById("proceedBtn").onclick = goToPayment;
+
+</script>
+</body>
+</html>

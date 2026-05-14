@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sync Your Journey - Simplifying travel with innovative features">
+  <meta name="keywords" content="travel, journey, seamless, smart, transport, ride">
+  <meta name="author" content="Priyanshi">
+  <title>Sync Your Journey</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Link to Google Fonts for better typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Link to FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <!-- Perfect logo with alt text -->
+      <img src="https://i.postimg.cc/XqSZywwz/Blue-Tosca-Modern-Bold-Training-Development-Presentation-1-2-removebg-preview.png"
+           alt="Sync Your Journey Logo"
+           class="logo-img">
+    </div>
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#help">Help</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Sync Your Journey,<br> Simplify Your Ride</h1>
+      <p>Join us to make your travel smarter, seamless, and stress-free. Explore the possibilities with our intuitive platform.</p>
+      <a href="login.html" class="cta-button">Let's Get Started</a>
+    </div>
+  </section>
+ 
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>We provide innovative solutions to make your travel experience more efficient, saving you time and hassle. Our platform offers seamless integration with your daily commute and travel needs.</p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="services-content">
+      <h2>Our Services</h2>
+      <div class="service-box">
+        <i class="fas fa-sync"></i>
+        <h3>Seamless Integration</h3>
+        <p>Connect with multiple transportation modes for a smooth journey.</p>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Real-Time Tracking</h3>
+        <p>Stay updated with real-time data about your ride.</p>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Smart Suggestions</h3>
+        <p>Get the best routes and alternatives tailored to your preferences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact-content">
+      <h2>Contact Us</h2>
+      <form action="#" method="POST" class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Help Section -->
+  <section class="help" id="help">
+    <div class="help-content">
+      <h2>Need Help?</h2>
+      <p>Check our <a href="faqsfinal.html">FAQ</a> or reach out via the contact form for personalized assistance.</p>
+    </div>
+  </section>
+  <button id="chatbot-button">
+    <img src="C:\Journeysync\chatbot-backend\chatbot.png.webp" alt="Chatbot Icon">
+</button>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>&copy; 2025 Sync Your Journey. All rights reserved. | <a href="#contact">Contact Us</a> | <a href="help.html">Help</a></p>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    document.getElementById("chatbot-button").addEventListener("click", function() {
+    window.location.href = "chatbot.html"; // Replace with your actual page URL
+});
+
+
+
+  </script>
+  <style>
+    /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  background-color: #4B4C78; /* Elegant background color */
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(0, 0, 0, 0.7); /* Transparent with darker shade */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar:hover {
+  background-color: rgba(0, 0, 0, 0.9); /* Darker on hover */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo-img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin: 0 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  transition: color 0.3s ease, padding 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffd700; /* Golden hover effect */
+  padding-bottom: 4px;
+  border-bottom: 2px solid #ffd700;
+}
+
+/* Mobile Menu */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links.active {
+  display: block;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.nav-links.active li {
+  margin: 10px 0;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: linear-gradient(
+      rgba(75, 76, 120, 0.85),
+      rgba(75, 76, 120, 0.85)
+    ),
+    url('background.jpg') no-repeat center center/cover;
+  position: relative;
+  color: #ffffff;
+}
+
+.hero-content h1 {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 40px;
+  max-width: 600px;
+  line-height: 1.8;
+  color: #d1d1d1;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 15px 40px;
+  font-size: 18px;
+  color: #ffffff;
+  background: linear-gradient(45deg, #1dbf73, #0f944a);
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(45deg, #0f944a, #1dbf73);
+}
+
+/* About Section */
+.about {
+  padding: 60px 20px;
+  background-color: #2f2f4f;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.about p {
+  font-size: 18px;
+  font-weight: 300;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+#chatbot-button img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#chatbot-button:hover {
+    transform: scale(1.1);
+}
+
+
+/* Services Section */
+.services {
+  padding: 60px 20px;
+  background-color: #36365c;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.service-box {
+  display: inline-block;
+  width: 30%;
+  margin: 20px;
+  padding: 30px;
+  background-color: #4a4b6b;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.service-box i {
+  font-size: 36px;
+  color: #ffd700;
+  margin-bottom: 15px;
+}
+
+.service-box h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.service-box p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #d1d1d1;
+}
+
+/* Contact Section */
+.contact {
+  padding: 60px 20px;
+  text-align: center;
+  background: #36365c;
+}
+
+.contact h2 {
+  font-size: 36px;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.contact-form textarea {
+  resize: none;
+}
+
+.contact-form button {
+  width: 100%;
+  background: linear-gradient(45deg, #1dbf73, #0f944a);
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Help Section */
+.help {
+  padding: 60px 20px;
+  text-align: center;
+  background: #4a4b6b;
+  color: #d1d1d1;
+}
+
+.help a {
+  color: #ffd700;
+  text-decoration: underline;
+}
+
+.help a:hover {
+  color: #1dbf73;
+}
+
+/* Footer */
+.footer {
+  background-color: #2f2f4f;
+  text-align: center;
+  padding: 15px 0;
+  color: white;
+  font-size: 14px;
+}
+
+.footer a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+  }
+
+  .hero-content h1 {
+    font-size: 45px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .cta-button {
+    font-size: 16px;
+    padding: 12px 30px;
+  }
+
+  .service-box {
+    width: 100%;
+    margin: 20px 0;
+  }
+}
+  </style>
+</body>
+</html> 

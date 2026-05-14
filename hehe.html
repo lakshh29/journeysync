@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Info</title>
+    <style>
+        /* Styles from your existing code */
+        .input-section {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .input-section input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-section button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .result-section {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 50%;
+            margin: auto;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .train-info {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="input-section">
+        <input type="text" id="source" placeholder="Enter Source">
+        <input type="text" id="destination" placeholder="Enter Destination">
+        <button onclick="showTrainInfo()">Search Train</button>
+    </div>
+
+    <div class="result-section" id="output">
+        <p><strong>Source:</strong> <span id="display-source">-</span></p>
+        <p><strong>Destination:</strong> <span id="display-destination">-</span></p>
+        <p class="train-info" id="train-info">Enter details to see available trains.</p>
+    </div>
+
+    <script>
+        function showTrainInfo() {
+            let source = document.getElementById("source").value;
+            let destination = document.getElementById("destination").value;
+
+            // Display entered values
+            document.getElementById("display-source").textContent = source;
+            document.getElementById("display-destination").textContent = destination;
+
+            // Sample Train Data
+            let trains = {
+                "Delhi-Mumbai": "Rajdhani Express (12951) - Dep: 16:00, Arr: 08:35",
+                "Mumbai-Chennai": "Chennai Express (12163) - Dep: 20:30, Arr: 10:15",
+                "Kolkata-Delhi": "Duronto Express (12273) - Dep: 18:00, Arr: 11:30"
+            };
+
+            let key = `${source}-${destination}`;
+            if (trains[key]) {
+                document.getElementById("train-info").textContent = `Train Available: ${trains[key]}`;
+            } else {
+                document.getElementById("train-info").textContent = "No direct trains found.";
+            }
+        }
+    </script>
+
+</body>
+</html>
