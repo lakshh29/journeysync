@@ -43,6 +43,25 @@ npm install
 Run the project:
 npm start
 
+
+
+## Screenshots
+
+### Homepage
+![Homepage](screenshots/Picture1.png)
+
+### Login Page
+![Login](screenshots/Picture2.png)
+
+### Bus Booking
+![Bus Booking](screenshots/Picture3.png)
+
+### Train Booking
+![Train Booking](screenshots/Picture4.png)
+
+
+
+
 Future Enhancements:
 1)AI-based travel recommendations
 2)Real-time ticket availability
